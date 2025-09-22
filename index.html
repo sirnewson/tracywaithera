@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracy Waithera | Your Journey to Growth Begins Here</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #0A192F;
+            --secondary-yellow: #f5a623;
+            --text-dark: #2c3e50;
+            --text-light: #5d6d7e;
+            --bg-light: #f4f7f6;
+            --bg-dark: #e8eded;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        .section-container {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-bg-wrapper {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120vh; /* Bigger for parallax effect */
+            background-image: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), url('https://placehold.co/1920x1080/0A192F/ccd6f6?text=Background');
+            background-size: cover;
+            background-position: center;
+            will-change: transform; /* Optimize for animation */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-yellow);
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            background-color: #e3951f;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-shapes::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(245, 166, 35, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .section-shapes::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(10, 25, 47, 0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Fade-in-up animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Hero Section with Parallax -->
+    <header class="hero-bg-wrapper">
+        <div class="hero-bg" id="hero-bg-parallax"></div>
+        <div class="hero-content">
+            <div class="max-w-4xl mx-auto animate-on-scroll">
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6">Your Journey to Growth Begins Here.</h1>
+                <p class="text-xl sm:text-2xl md:text-3xl font-light mb-12 opacity-80">Guidance and inspiration for a life of purpose, authenticity, and continuous transformation.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#about" class="btn-primary py-4 px-10 rounded-full font-semibold">Explore My Story</a>
+                    <a href="#content" class="btn-primary py-4 px-10 rounded-full font-semibold">Watch My Latest Content</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section-container bg-bg-light">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1 animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-6 section-title">From My Journey to Yours</h2>
+                <p class="text-lg leading-relaxed mb-6 text-text-light">
+                    I used to think my story was a mess of detours and dead ends. But through it all, I've discovered a profound truth: every single challenge, every moment of doubt, was a building block for who I am today. My journey from facing personal struggles to finding purpose has been the most transformative experience of my life, and now my passion is to help you find that same light within yourself.
+                </p>
+                <p class="text-lg leading-relaxed text-text-light">
+                    Through my work as a mentor, a speaker, and a content creator, I share the lessons I've learned with brutal honesty and unwavering hope. This platform is a safe space for you to explore, learn, and grow, because I believe that true transformation begins when we stop running from our stories and start owning them.
+                </p>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center animate-on-scroll">
+                <div class="relative w-full max-w-lg card p-4">
+                    <img src="https://placehold.co/600x600/ffffff/0A192F?text=Tracy+Waithera+Photo" alt="Portrait of Tracy Waithera" class="rounded-xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Hub Section -->
+    <section id="content" class="section-container bg-bg-dark section-shapes">
+        <div class="text-center animate-on-scroll">
+            <h2 class="text-4xl font-bold mb-4 section-title">My Content Hub</h2>
+            <p class="text-lg text-text-light mb-12">Dive into my latest videos and articles designed to empower and inspire you on your unique journey.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
+            <!-- YouTube Video 1 -->
+            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll">
+                <div class="card p-4">
+                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/YQQI-0we8Wk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- YouTube Video 2 -->
+            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll" style="transition-delay: 0.1s;">
+                <div class="card p-4">
+                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/cN3DiHZT7HQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- YouTube Video 3 -->
+            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll" style="transition-delay: 0.2s;">
+                <div class="card p-4">
+                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/UDjvGaf5OR4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-16 animate-on-scroll">
+            <a href="#" class="btn-primary py-4 px-10 rounded-full font-semibold">View All Content</a>
+        </div>
+    </section>
+
+    <!-- Speaking & Mentorship Section -->
+    <section id="speaking" class="section-container bg-bg-light">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="text-center md:text-left animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-6 section-title">Book Tracy Waithera</h2>
+                <p class="text-lg leading-relaxed mb-6 text-text-light">As a speaker and mentor, I love connecting with audiences and sharing actionable insights. My goal is to leave every room feeling empowered and inspired to take on their own journey. I specialize in topics that foster authentic connection and personal resilience.</p>
+                <ul class="space-y-4 mb-8 text-lg font-semibold">
+                    <li class="flex items-center text-text-dark">
+                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        Navigating Life's Hurdles with Resilience
+                    </li>
+                    <li class="flex items-center text-text-dark">
+                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        Building an Authentic and Purpose-Driven Life
+                    </li>
+                    <li class="flex items-center text-text-dark">
+                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        The Power of Storytelling for Connection
+                    </li>
+                </ul>
+                <a href="#contact" class="btn-primary py-4 px-10 rounded-full font-semibold">Inquire About Speaking</a>
+            </div>
+            <div class="flex justify-center mt-8 md:mt-0 animate-on-scroll" style="transition-delay: 0.1s;">
+                <div class="card rounded-xl shadow-xl w-full max-w-sm p-8">
+                    <p class="text-xl italic font-light mb-4 text-text-dark">"Tracy's words are a breath of fresh air. She speaks with such authenticity that you feel like you're talking to a friend who truly understands. Her message is not just heard, but felt."</p>
+                    <p class="font-bold text-secondary-yellow">- Audience Member, Mentorship Session</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-container bg-bg-dark section-shapes">
+        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+            <h2 class="text-4xl font-bold mb-6 section-title">Let's Connect</h2>
+            <p class="text-lg mb-8 text-text-light">Whether you have a question or a story to share, I'd love to hear from you. Fill out the form below and I'll get back to you as soon as I can!</p>
+            <form class="space-y-6 text-left">
+                <div>
+                    <label for="name" class="block text-text-dark font-semibold mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary-yellow transition-colors" placeholder="Your Name">
+                </div>
+                <div>
+                    <label for="email" class="block text-text-dark font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary-yellow transition-colors" placeholder="your@email.com">
+                </div>
+                <div>
+                    <label for="message" class="block text-text-dark font-semibold mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" class="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-secondary-yellow transition-colors" placeholder="Your message..."></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-primary py-4 px-12 rounded-full font-semibold">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-blue text-center text-text-light py-10">
+        <div class="container mx-auto max-w-5xl animate-on-scroll">
+            <p class="mb-6 opacity-80">&copy; 2025 Tracy Waithera. All rights reserved.</p>
+            <div class="flex justify-center gap-8">
+                <a href="https://www.youtube.com/@Tracywaithera" target="_blank" class="text-text-dark hover:text-secondary-yellow transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.13-.178-9.06-.062-12.28.163C4.94 3.766 2.768 5.485 2.126 8.78c-.28 1.48-.386 3.016-.28 4.498.11 1.482.38 3.018.66 4.498.42 2.21 2.22 3.86 4.79 4.19.86.11 1.7.15 2.58.19 3.06.12 6.13.12 9.19 0 .88-.04 1.72-.08 2.58-.19 2.57-.33 4.37-1.98 4.79-4.19zM9.999 15.518V8.482L15.626 12l-5.627 3.518z"></path></svg>
+                </a>
+                <a href="https://www.instagram.com/tracywaithera" target="_blank" class="text-text-dark hover:text-secondary-yellow transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.858.076 1.15.057 1.7.234 2.054.375.46.18.79.394 1.144.748.354.354.568.684.748 1.144.14.354.318.904.375 2.054.063 1.274.076 1.654.076 4.858s-.013 3.584-.076 4.858c-.057 1.15-.234 1.7-.375 2.054-.18.46-.394.79-.748 1.144-.354.354-.568.684-.748-1.144-.14-.354-.318-.904-.375-2.054-.063-1.274-.076-1.654-.076-4.858s.013-3.584.076-4.858c.057-1.15.234-1.7.375-2.054.18-.46.394-.79.748-1.144.354-.354.684-.568 1.144-.748.354-.14.904-.318 2.054-.375C8.416 2.176 8.796 2.163 12 2.163zM12 0C8.675 0 8.243.013 6.94.076c-1.28.06-2.063.26-2.61.474-.5.2-.87.48-1.21.82-.34.34-.62.71-.82 1.21-.214.547-.414 1.33-.474 2.61C2.176 8.243 2.163 8.675 2.163 12s.013 3.757.076 5.06c.06 1.28.26 2.063.474 2.61.2.5.48.87.82 1.21.34.34.71.62 1.21.82.547.214 1.33.414 2.61.474C8.243 21.824 8.675 21.837 12 21.837s3.757-.013 5.06-.076c1.28-.06 2.063-.26 2.61-.474.5-.2.87-.48 1.21-.82.34-.34.62-.71.82-1.21.214-.547.414-1.33.474-2.61.063-1.283.076-1.715.076-5.06s-.013-3.757-.076-5.06c-.06-1.28-.26-2.063-.474-2.61-.2-.5-.48-.87-.82-1.21-.34-.34-.71-.62-1.21-.82-.547-.214-1.33-.414-2.61-.474C15.757 2.176 15.325 2.163 12 2.163zm0 3.864c2.651 0 4.81 2.159 4.81 4.81s-2.159 4.81-4.81 4.81-4.81-2.159-4.81-4.81 2.159-4.81 4.81-4.81zm0 2.508c-1.272 0-2.302 1.03-2.302 2.302s1.03 2.302 2.302 2.302 2.302-1.03 2.302-2.302-1.03-2.302-2.302-2.302zm6.265-2.203c-.495 0-.895-.4-.895-.895s.4-.895.895-.895.895.4.895.895-.4.895-.895.895z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Parallax Effect for the Hero Background
+        window.addEventListener('scroll', function() {
+            const parallaxBg = document.getElementById('hero-bg-parallax');
+            let scrollPosition = window.pageYOffset;
+            parallaxBg.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+
+        // Intersection Observer for scroll animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
