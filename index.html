@@ -86,6 +86,13 @@
             -webkit-text-fill-color: transparent;
             font-family: 'Space Grotesk', sans-serif;
         }
+        /* Gradient Text for Main Headings */
+        .main-gradient-text {
+            background-image: linear-gradient(90deg, #a723e7, #fe2a8e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
         /* Parallax Shapes */
         .parallax-shape {
@@ -119,48 +126,20 @@
             background: linear-gradient(135deg, var(--secondary-purple), var(--secondary-pink));
             border-radius: 10px;
         }
-
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background-color: #0A192F;
-            color: #ccd6f6;
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #5d6d7e;
-        }
     </style>
 </head>
 <body class="leading-relaxed">
 
     <!-- Hero Section with Animated Background -->
     <header class="hero-gradient-bg text-center text-text-light min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
-        <div class="parallax-shape w-40 h-40 left-10 top-20"></div>
-        <div class="parallax-shape w-24 h-24 right-20 top-60"></div>
-        <div class="parallax-shape w-60 h-60 bottom-40 left-1/4"></div>
+        <div class="parallax-shape w-40 h-40 left-10 top-20" data-speed="0.2"></div>
+        <div class="parallax-shape w-24 h-24 right-20 top-60" data-speed="0.3"></div>
+        <div class="parallax-shape w-60 h-60 bottom-40 left-1/4" data-speed="0.1"></div>
+        <div class="parallax-shape w-32 h-32 top-1/4 right-1/4" data-speed="0.5"></div>
+        <div class="parallax-shape w-50 h-50 bottom-20 left-1/2" data-speed="0.4"></div>
 
         <div class="max-w-6xl mx-auto z-10 animate-on-scroll">
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6 gradient-text">Your Journey to Growth Begins Here.</h1>
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6 main-gradient-text">Your Journey to Growth Begins Here.</h1>
             <p class="text-xl sm:text-2xl md:text-3xl font-light mb-12 opacity-80">Guidance and inspiration for a life of purpose, authenticity, and continuous transformation.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-8">
                 <a href="#about" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Explore My Story</a>
@@ -170,29 +149,58 @@
     </header>
 
     <!-- About Section with Glass Card -->
-    <section id="about" class="section-container bg-bg-light">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="order-2 md:order-1 animate-on-scroll">
-                <h2 class="text-4xl font-bold mb-6 gradient-text">From My Journey to Yours</h2>
-                <p class="text-lg leading-relaxed mb-6 text-text-light">
-                    I used to think my story was a mess of detours and dead ends. But through it all, I've discovered a profound truth: every single challenge, every moment of doubt, was a building block for who I am today. My journey from facing personal struggles to finding purpose has been the most transformative experience of my life, and now my passion is to help you find that same light within yourself.
-                </p>
-                <p class="text-lg leading-relaxed text-text-light">
-                    Through my work as a mentor, a speaker, and a content creator, I share the lessons I've learned with brutal honesty and unwavering hope. This platform is a safe space for you to explore, learn, and grow, because I believe that true transformation begins when we stop running from our stories and start owning them.
-                </p>
+    <section id="about" class="bg-bg-light py-24">
+        <div class="section-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 animate-on-scroll">
+                    <h2 class="text-4xl font-bold mb-6 main-gradient-text">From My Journey to Yours</h2>
+                    <p class="text-lg leading-relaxed mb-6 text-text-light">
+                        I used to think my story was a mess of detours and dead ends. But through it all, I've discovered a profound truth: every single challenge, every moment of doubt, was a building block for who I am today. My journey from facing personal struggles to finding purpose has been the most transformative experience of my life, and now my passion is to help you find that same light within yourself.
+                    </p>
+                    <p class="text-lg leading-relaxed text-text-light">
+                        Through my work as a mentor, a speaker, and a content creator, I share the lessons I've learned with brutal honesty and unwavering hope. This platform is a safe space for you to explore, learn, and grow, because I believe that true transformation begins when we stop running from our stories and start owning them.
+                    </p>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center animate-on-scroll">
+                    <div class="relative w-full max-w-lg glass-card p-4">
+                        <img src="https://cdn.radioafrica.digital/image/2024/10/3-2024-10-18T150820.145.jpg" alt="Portrait of Tracy Waithera" class="rounded-xl shadow-2xl w-full">
+                    </div>
+                </div>
             </div>
-            <div class="order-1 md:order-2 flex justify-center animate-on-scroll">
-                <div class="relative w-full max-w-lg glass-card p-4">
-                    <img src="https://cdn.radioafrica.digital/image/2024/10/3-2024-10-18T150820.145.jpg" alt="Portrait of Tracy Waithera" class="rounded-xl shadow-2xl w-full">
+        </div>
+    </section>
+
+    <!-- Services Grid Section with Glowing Icons -->
+    <section id="services" class="bg-bg-dark py-24">
+        <div class="section-container">
+            <div class="text-center animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-4 main-gradient-text">My Mission</h2>
+                <p class="text-lg text-text-light mb-12">I am committed to guiding you through your journey with authenticity and compassion.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-purple" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Mentorship</h3>
+                    <p class="text-text-light">Providing one-on-one and group mentorship to help you find clarity, confidence, and purpose.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.1s;">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-pink" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Public Speaking</h3>
+                    <p class="text-text-light">Delivering powerful, inspiring talks on personal growth, mindset, and career development.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.2s;">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M22 10.92V6c0-1.1-.9-2-2-2h-2.18c-.35-.61-.86-1.12-1.47-1.47l-.18-.1c-.48-.27-.88-.43-1.35-.43h-2.18c-.47 0-.87.16-1.35.43l-.18.1c-.61.35-1.12.86-1.47 1.47H4c-1.1 0-2 .9-2 2v4.92c-.35.61-.43 1.28-.43 1.95v.06c0 1.93.99 3.65 2.5 4.67l.1.06c.61.35 1.28.43 1.95.43h2.18c.35.61.86 1.12 1.47 1.47l.18.1c.48.27.88.43 1.35.43h2.18c.47 0-.87-.16-1.35-.43l-.18-.1c-.61-.35-1.12-.86-1.47-1.47H20c1.1 0 2-.9 2-2v-4.92c.35-.61.43-1.28.43-1.95v-.06c0-1.93-.99-3.65-2.5-4.67l-.1-.06zM20 18c0 1.1-.9 2-2 2h-2.18c-.35.61-.86 1.12-1.47 1.47l-.18.1c-.48.27-.88.43-1.35.43h-2.18c-.47 0-.87-.16-1.35-.43l-.18-.1c-.61-.35-1.12-.86-1.47-1.47H4c-1.1 0-2-.9-2-2v-4.92c-.35-.61-.43-1.28-.43-1.95v-.06c0-1.93.99-3.65 2.5-4.67l.1-.06c.61-.35 1.12-.86 1.47-1.47H20c1.1 0 2 .9 2 2v4.92c-.35.61-.43 1.28-.43 1.95v.06c0 1.93-.99 3.65-2.5 4.67l-.1-.06z"/></svg>
+                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Content Creation</h3>
+                    <p class="text-text-light">Producing engaging digital content that inspires positive change and personal growth.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Content Hub with Glass Cards -->
-    <section id="content" class="section-container bg-bg-dark">
+    <section id="content" class="section-container bg-bg-light py-24">
         <div class="text-center animate-on-scroll">
-            <h2 class="text-4xl font-bold mb-4 gradient-text">My Content Hub</h2>
+            <h2 class="text-4xl font-bold mb-4 main-gradient-text">My Content Hub</h2>
             <p class="text-lg text-text-light mb-12">Dive into my latest videos and articles designed to empower and inspire you on your unique journey.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
@@ -221,66 +229,84 @@
     </section>
 
     <!-- Speaking & Mentorship Section with Glass Card -->
-    <section id="speaking" class="section-container bg-bg-light">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="text-center md:text-left animate-on-scroll">
-                <h2 class="text-4xl font-bold mb-6 gradient-text">Book Tracy Waithera</h2>
-                <p class="text-lg leading-relaxed mb-6 text-text-light">As a speaker and mentor, I love connecting with audiences and sharing actionable insights. My goal is to leave every room feeling empowered and inspired to take on their own journey. I specialize in topics that foster authentic connection and personal resilience.</p>
-                <ul class="space-y-4 mb-8 text-lg font-semibold">
-                    <li class="flex items-center text-text-light">
-                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        Navigating Life's Hurdles with Resilience
-                    </li>
-                    <li class="flex items-center text-text-light">
-                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        Building an Authentic and Purpose-Driven Life
-                    </li>
-                    <li class="flex items-center text-text-light">
-                        <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        The Power of Storytelling for Connection
-                    </li>
-                </ul>
-                <a href="#contact" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Inquire About Speaking</a>
-            </div>
-            <div class="flex justify-center mt-8 md:mt-0 animate-on-scroll" style="transition-delay: 0.1s;">
-                <div class="glass-card rounded-xl shadow-xl w-full max-w-sm p-8 text-center">
-                    <div class="flex justify-center mb-4 text-secondary-yellow">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+    <section id="speaking" class="bg-bg-dark py-24">
+        <div class="section-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="text-center md:text-left animate-on-scroll">
+                    <h2 class="text-4xl font-bold mb-6 main-gradient-text">Book Tracy Waithera</h2>
+                    <p class="text-lg leading-relaxed mb-6 text-text-light">As a speaker and mentor, I love connecting with audiences and sharing actionable insights. My goal is to leave every room feeling empowered and inspired to take on their own journey. I specialize in topics that foster authentic connection and personal resilience.</p>
+                    <ul class="space-y-4 mb-8 text-lg font-semibold">
+                        <li class="flex items-center text-text-light">
+                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Navigating Life's Hurdles with Resilience
+                        </li>
+                        <li class="flex items-center text-text-light">
+                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Building an Authentic and Purpose-Driven Life
+                        </li>
+                        <li class="flex items-center text-text-light">
+                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            The Power of Storytelling for Connection
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Inquire About Speaking</a>
+                </div>
+                <div class="flex justify-center mt-8 md:mt-0 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="glass-card rounded-xl shadow-xl w-full max-w-sm p-8 text-center">
+                        <div class="flex justify-center mb-4 text-secondary-yellow">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+                        </div>
+                        <p class="text-xl italic font-light mb-4 text-text-light">"Tracy's words are a breath of fresh air. She speaks with such authenticity that you feel like you're talking to a friend who truly understands. Her message is not just heard, but felt."</p>
+                        <p class="font-bold text-secondary-yellow">- Audience Member, Mentorship Session</p>
                     </div>
-                    <p class="text-xl italic font-light mb-4 text-text-light">"Tracy's words are a breath of fresh air. She speaks with such authenticity that you feel like you're talking to a friend who truly understands. Her message is not just heard, but felt."</p>
-                    <p class="font-bold text-secondary-yellow">- Audience Member, Mentorship Session</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blog Posts Section -->
+    <section id="blog" class="bg-bg-light py-24">
+        <div class="section-container">
+            <div class="text-center animate-on-scroll">
+                <h2 class="text-4xl font-bold mb-4 main-gradient-text">Latest Insights</h2>
+                <p class="text-lg text-text-light mb-12">Read my thoughts on navigating life, finding purpose, and the journey of personal growth.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300">
+                    <img src="https://placehold.co/400x250/091a2f/fe2a8e?text=Mindfulness" alt="A photo of a person meditating." class="w-full h-auto rounded-lg mb-4">
+                    <h3 class="text-xl font-bold main-gradient-text mb-2">The Power of Mindful Moments</h3>
+                    <p class="text-sm text-text-dark">A short guide to finding peace and focus in a chaotic world.</p>
+                </div>
+                <!-- Blog Post 2 -->
+                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.1s;">
+                    <img src="https://placehold.co/400x250/091a2f/4a00e0?text=Purpose" alt="A photo of a compass pointing to purpose." class="w-full h-auto rounded-lg mb-4">
+                    <h3 class="text-xl font-bold main-gradient-text mb-2">Finding Your North Star</h3>
+                    <p class="text-sm text-text-dark">How to discover and align with your true purpose in life.</p>
+                </div>
+                <!-- Blog Post 3 -->
+                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.2s;">
+                    <img src="https://placehold.co/400x250/091a2f/fe2a8e?text=Resilience" alt="A photo of a strong tree against a storm." class="w-full h-auto rounded-lg mb-4">
+                    <h3 class="text-xl font-bold main-gradient-text mb-2">Building Unbreakable Resilience</h3>
+                    <p class="text-sm text-text-dark">Practical steps to bounce back stronger from life's setbacks.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section with Glass Card -->
-    <section id="contact" class="section-container bg-bg-dark">
+    <section id="contact" class="section-container bg-bg-dark py-24">
         <div class="max-w-2xl mx-auto text-center animate-on-scroll">
-            <h2 class="text-4xl font-bold mb-6 gradient-text">Let's Connect</h2>
-            <p class="text-lg mb-8 text-text-light">Whether you have a question or a story to share, I'd love to hear from you. Fill out the form below and I'll get back to you as soon as I can!</p>
+            <h2 class="text-4xl font-bold mb-6 main-gradient-text">Let's Connect</h2>
+            <p class="text-lg mb-8 text-text-light">For speaking inquiries or personal questions, connect with me directly on WhatsApp.</p>
             <div class="glass-card p-8 rounded-2xl">
-                <form class="space-y-6 text-left">
-                    <div>
-                        <label for="name" class="block text-text-light font-semibold mb-2">Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-5 py-3 rounded-lg bg-transparent border border-gray-500 focus:outline-none focus:border-secondary-yellow text-text-light" placeholder="Your Name">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-text-light font-semibold mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="w-full px-5 py-3 rounded-lg bg-transparent border border-gray-500 focus:outline-none focus:border-secondary-yellow text-text-light" placeholder="your@email.com">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-text-light font-semibold mb-2">Message</label>
-                        <textarea id="message" name="message" rows="4" class="w-full px-5 py-3 rounded-lg bg-transparent border border-gray-500 focus:outline-none focus:border-secondary-yellow text-text-light" placeholder="Your message..."></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn-neon-glow py-4 px-12 rounded-full font-semibold text-xl">Send Message</button>
-                    </div>
-                </form>
+                <a href="https://wa.me/254702476038" target="_blank" class="btn-neon-glow py-4 px-12 rounded-full font-semibold text-xl inline-block">
+                    Send a Message on WhatsApp
+                </a>
             </div>
         </div>
     </section>
@@ -300,16 +326,6 @@
         </div>
     </footer>
 
-    <!-- Birthday Pop-up and Confetti -->
-    <div id="birthday-modal" class="modal hidden">
-        <div class="modal-content relative">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <h3 class="text-3xl font-bold mb-4 text-text-light">Happy Birthday, Tracy!</h3>
-            <p class="text-lg">Wishing you a day filled with joy, growth, and endless possibilities.</p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         // Parallax Effect for the Hero Shapes
         window.addEventListener('scroll', function() {
@@ -334,26 +350,7 @@
             document.querySelectorAll('.animate-on-scroll').forEach(element => {
                 observer.observe(element);
             });
-            
-            // Birthday pop-up and confetti logic
-            showBirthdayModal();
         });
-
-        function showBirthdayModal() {
-            const modal = document.getElementById('birthday-modal');
-            modal.classList.remove('hidden');
-            // Celebrate with confetti!
-            confetti({
-                particleCount: 150,
-                spread: 180,
-                origin: { y: 0.6 }
-            });
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('birthday-modal');
-            modal.classList.add('hidden');
-        }
     </script>
 </body>
 </html>
