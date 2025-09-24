@@ -1,356 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracy Waithera | Your Journey to Growth Begins Here</title>
+    <title>Tracy Waithera - AI-Powered Marketing Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --primary-blue: #091a2f;
-            --secondary-purple: #4a00e0;
-            --secondary-pink: #fe2a8e;
-            --text-light: #f0f4f8;
-            --text-dark: #b8c1ec;
-            --bg-dark: #000428; /* Deep cosmic blue */
-            --bg-light: #004e92; /* Darker blue for contrast */
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-dark);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: #ffffff;
         }
-        
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Animated Gradient Background */
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .hero-gradient-bg {
-            background: linear-gradient(-45deg, var(--primary-blue), #1a2a4b, var(--secondary-purple), var(--secondary-pink));
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
-        }
-
-        /* Neon Glow Button */
-        .btn-neon-glow {
-            border: 2px solid transparent;
-            background-image: linear-gradient(135deg, var(--secondary-purple) 0%, var(--secondary-pink) 100%);
-            background-clip: padding-box;
-            color: var(--text-light);
-            transition: all 0.4s ease-in-out;
-            position: relative;
-            z-index: 1;
-        }
-        .btn-neon-glow::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--secondary-purple) 0%, var(--secondary-pink) 100%);
-            z-index: -1;
-            margin: -2px;
-            border-radius: inherit;
-            filter: blur(8px);
-            opacity: 0.7;
-            transition: opacity 0.4s ease-in-out;
-        }
-        .btn-neon-glow:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(254, 42, 142, 0.5);
-        }
-        .btn-neon-glow:hover::before {
-            opacity: 1;
-        }
-
-        /* Gradient Text */
         .gradient-text {
-            background-image: linear-gradient(135deg, var(--secondary-pink), var(--secondary-yellow));
+            background: linear-gradient(90deg, #F97316, #0D9488);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: 'Space Grotesk', sans-serif;
         }
-        /* Gradient Text for Main Headings */
-        .main-gradient-text {
-            background-image: linear-gradient(90deg, #a723e7, #fe2a8e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Space Grotesk', sans-serif;
+        .cta-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.15), transparent 70%);
         }
-
-        /* Parallax Shapes */
-        .parallax-shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(5px);
-            border-radius: 50%;
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            will-change: transform;
+        .pattern-bg {
+             background-image:
+                radial-gradient(circle at 10px 10px, rgba(249, 115, 22, 0.1) 1px, transparent 0),
+                radial-gradient(circle at 50px 50px, rgba(13, 148, 136, 0.1) 1px, transparent 0);
+            background-size: 60px 60px;
         }
-
-        /* Scroll Animation */
-        .animate-on-scroll {
+        .scroll-target {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.4, 0.0, 0.2, 1), transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .animate-on-scroll.is-visible {
+        .scroll-target.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Custom scrollbar for visual appeal */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000428;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--secondary-purple), var(--secondary-pink));
-            border-radius: 10px;
-        }
     </style>
 </head>
-<body class="leading-relaxed">
+<body class="text-gray-800">
 
-    <!-- Hero Section with Animated Background -->
-    <header class="hero-gradient-bg text-center text-text-light min-h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
-        <div class="parallax-shape w-40 h-40 left-10 top-20" data-speed="0.2"></div>
-        <div class="parallax-shape w-24 h-24 right-20 top-60" data-speed="0.3"></div>
-        <div class="parallax-shape w-60 h-60 bottom-40 left-1/4" data-speed="0.1"></div>
-        <div class="parallax-shape w-32 h-32 top-1/4 right-1/4" data-speed="0.5"></div>
-        <div class="parallax-shape w-50 h-50 bottom-20 left-1/2" data-speed="0.4"></div>
-
-        <div class="max-w-6xl mx-auto z-10 animate-on-scroll">
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-6 main-gradient-text">Your Journey to Growth Begins Here.</h1>
-            <p class="text-xl sm:text-2xl md:text-3xl font-light mb-12 opacity-80">Guidance and inspiration for a life of purpose, authenticity, and continuous transformation.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-8">
-                <a href="#about" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Explore My Story</a>
-                <a href="#content" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Watch My Latest Content</a>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-800">Tracy Waithera</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-gray-600 hover:text-teal-700 transition-colors">Services</a>
+                <a href="#why-me" class="text-gray-600 hover:text-teal-700 transition-colors">Why Me</a>
+                <a href="#consultations" class="text-gray-600 hover:text-teal-700 transition-colors">Consultations</a>
+                <a href="#insights" class="text-gray-600 hover:text-teal-700 transition-colors">Insights</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                 <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'm%20interested%20in%20working%20with%20you." target="_blank" class="hidden sm:inline-block bg-orange-500 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-orange-600 transition-all transform hover:scale-105 shadow-md">Work With Me</a>
+                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                 </button>
             </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#services" class="block py-2 text-gray-600 hover:text-teal-700">Services</a>
+            <a href="#why-me" class="block py-2 text-gray-600 hover:text-teal-700">Why Me</a>
+            <a href="#consultations" class="block py-2 text-gray-600 hover:text-teal-700">Consultations</a>
+            <a href="#insights" class="block py-2 text-gray-600 hover:text-teal-700">Insights</a>
         </div>
     </header>
 
-    <!-- About Section with Glass Card -->
-    <section id="about" class="bg-bg-light py-24">
-        <div class="section-container">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="order-2 md:order-1 animate-on-scroll">
-                    <h2 class="text-4xl font-bold mb-6 main-gradient-text">From My Journey to Yours</h2>
-                    <p class="text-lg leading-relaxed mb-6 text-text-light">
-                        I used to think my story was a mess of detours and dead ends. But through it all, I've discovered a profound truth: every single challenge, every moment of doubt, was a building block for who I am today. My journey from facing personal struggles to finding purpose has been the most transformative experience of my life, and now my passion is to help you find that same light within yourself.
-                    </p>
-                    <p class="text-lg leading-relaxed text-text-light">
-                        Through my work as a mentor, a speaker, and a content creator, I share the lessons I've learned with brutal honesty and unwavering hope. This platform is a safe space for you to explore, learn, and grow, because I believe that true transformation begins when we stop running from our stories and start owning them.
-                    </p>
-                </div>
-                <div class="order-1 md:order-2 flex justify-center animate-on-scroll">
-                    <div class="relative w-full max-w-lg glass-card p-4">
-                        <img src="https://cdn.radioafrica.digital/image/2024/10/3-2024-10-18T150820.145.jpg" alt="Portrait of Tracy Waithera" class="rounded-xl shadow-2xl w-full">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Grid Section with Glowing Icons -->
-    <section id="services" class="bg-bg-dark py-24">
-        <div class="section-container">
-            <div class="text-center animate-on-scroll">
-                <h2 class="text-4xl font-bold mb-4 main-gradient-text">My Mission</h2>
-                <p class="text-lg text-text-light mb-12">I am committed to guiding you through your journey with authenticity and compassion.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-purple" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Mentorship</h3>
-                    <p class="text-text-light">Providing one-on-one and group mentorship to help you find clarity, confidence, and purpose.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.1s;">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-pink" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Public Speaking</h3>
-                    <p class="text-text-light">Delivering powerful, inspiring talks on personal growth, mindset, and career development.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl text-center animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.2s;">
-                    <svg class="w-16 h-16 mx-auto mb-4 text-secondary-yellow" fill="currentColor" viewBox="0 0 24 24"><path d="M22 10.92V6c0-1.1-.9-2-2-2h-2.18c-.35-.61-.86-1.12-1.47-1.47l-.18-.1c-.48-.27-.88-.43-1.35-.43h-2.18c-.47 0-.87.16-1.35.43l-.18.1c-.61.35-1.12.86-1.47 1.47H4c-1.1 0-2 .9-2 2v4.92c-.35.61-.43 1.28-.43 1.95v.06c0 1.93.99 3.65 2.5 4.67l.1.06c.61.35 1.28.43 1.95.43h2.18c.35.61.86 1.12 1.47 1.47l.18.1c.48.27.88.43 1.35.43h2.18c.47 0-.87-.16-1.35-.43l-.18-.1c-.61-.35-1.12-.86-1.47-1.47H20c1.1 0 2-.9 2-2v-4.92c.35-.61.43-1.28.43-1.95v-.06c0-1.93-.99-3.65-2.5-4.67l-.1-.06zM20 18c0 1.1-.9 2-2 2h-2.18c-.35.61-.86 1.12-1.47 1.47l-.18.1c-.48.27-.88.43-1.35.43h-2.18c-.47 0-.87-.16-1.35-.43l-.18-.1c-.61-.35-1.12-.86-1.47-1.47H4c-1.1 0-2-.9-2-2v-4.92c-.35-.61-.43-1.28-.43-1.95v-.06c0-1.93.99-3.65 2.5-4.67l.1-.06c.61-.35 1.12-.86 1.47-1.47H20c1.1 0 2 .9 2 2v4.92c-.35.61-.43 1.28-.43 1.95v.06c0 1.93-.99 3.65-2.5 4.67l-.1-.06z"/></svg>
-                    <h3 class="text-2xl font-bold main-gradient-text mb-2">Content Creation</h3>
-                    <p class="text-text-light">Producing engaging digital content that inspires positive change and personal growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Hub with Glass Cards -->
-    <section id="content" class="section-container bg-bg-light py-24">
-        <div class="text-center animate-on-scroll">
-            <h2 class="text-4xl font-bold mb-4 main-gradient-text">My Content Hub</h2>
-            <p class="text-lg text-text-light mb-12">Dive into my latest videos and articles designed to empower and inspire you on your unique journey.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
-            <!-- YouTube Video 1 -->
-            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll">
-                <div class="glass-card p-4">
-                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/YQQI-0we8Wk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- YouTube Video 2 -->
-            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll" style="transition-delay: 0.1s;">
-                <div class="glass-card p-4">
-                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/cN3DiHZT7HQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- YouTube Video 3 -->
-            <div class="rounded-xl overflow-hidden shadow-xl animate-on-scroll" style="transition-delay: 0.2s;">
-                <div class="glass-card p-4">
-                    <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/UDjvGaf5OR4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-16 animate-on-scroll">
-            <a href="#" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">View All Content</a>
-        </div>
-    </section>
-
-    <!-- Speaking & Mentorship Section with Glass Card -->
-    <section id="speaking" class="bg-bg-dark py-24">
-        <div class="section-container">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="text-center md:text-left animate-on-scroll">
-                    <h2 class="text-4xl font-bold mb-6 main-gradient-text">Book Tracy Waithera</h2>
-                    <p class="text-lg leading-relaxed mb-6 text-text-light">As a speaker and mentor, I love connecting with audiences and sharing actionable insights. My goal is to leave every room feeling empowered and inspired to take on their own journey. I specialize in topics that foster authentic connection and personal resilience.</p>
-                    <ul class="space-y-4 mb-8 text-lg font-semibold">
-                        <li class="flex items-center text-text-light">
-                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            Navigating Life's Hurdles with Resilience
-                        </li>
-                        <li class="flex items-center text-text-light">
-                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            Building an Authentic and Purpose-Driven Life
-                        </li>
-                        <li class="flex items-center text-text-light">
-                            <svg class="w-6 h-6 mr-2 text-secondary-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            The Power of Storytelling for Connection
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn-neon-glow py-4 px-10 rounded-full font-semibold text-xl">Inquire About Speaking</a>
-                </div>
-                <div class="flex justify-center mt-8 md:mt-0 animate-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="glass-card rounded-xl shadow-xl w-full max-w-sm p-8 text-center">
-                        <div class="flex justify-center mb-4 text-secondary-yellow">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.961a1 1 0 00.95.691h4.167c.969 0 1.371 1.24.588 1.81l-3.376 2.454a1 1 0 00-.363 1.118l1.286 3.961c.3.921-.755 1.688-1.54 1.118l-3.376-2.454a1 1 0 00-1.176 0l-3.376 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.961a1 1 0 00-.363-1.118L2.094 9.389c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.95-.691l1.286-3.961z"></path></svg>
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-32 pb-16 md:pt-40 md:pb-24">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-teal-900 leading-tight mb-6 scroll-target">Stop Guessing. <br>Start <span class="gradient-text">Growing</span>.</h1>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 mb-10 scroll-target" style="transition-delay: 200ms;">I build data-driven marketing strategies for ambitious African brands, powered by AI and proven expertise. Let's unlock your brand's true potential together.</p>
+                        <div class="flex justify-center lg:justify-start items-center gap-4 flex-wrap scroll-target" style="transition-delay: 400ms;">
+                            <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'm%20ready%20to%20book%20a%20free%20discovery%20call." target="_blank" class="bg-teal-700 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-teal-800 transition-all transform hover:scale-105 shadow-lg">Book a Free Discovery Call</a>
                         </div>
-                        <p class="text-xl italic font-light mb-4 text-text-light">"Tracy's words are a breath of fresh air. She speaks with such authenticity that you feel like you're talking to a friend who truly understands. Her message is not just heard, but felt."</p>
-                        <p class="font-bold text-secondary-yellow">- Audience Member, Mentorship Session</p>
+                    </div>
+                    <div class="lg:w-1/2 mt-12 lg:mt-0 scroll-target" style="transition-delay: 600ms;">
+                        <img src="https://scontent.fnbo9-1.fna.fbcdn.net/v/t39.30808-6/485354217_979316224291637_7305403550176562456_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEZW_G1RimAr9nlB8emEnesaNxXL18YIU9o3FcvXxghT74bsXR9RkFiHHDz4Ij1mVb92KNaTJo9XxYoRJ5g8IeA&_nc_ohc=uiBFSqKK_2IQ7kNvwFdzdjv&_nc_oc=AdnB7DEFNjAQvR3ALYK-xqGGu6l9w3pAMC46iOgSsjSBpcSjL6EOnKfktC9cCDmyNLo&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnbo9-1.fna&_nc_gid=y198F6VJGyoydIuzEracDA&oh=00_AfbNUM4Dq69xg_7FdVHeuLmykbySdoUrsllDjiTjjnE3_Q&oe=68DA3078" alt="Portrait of Tracy Waithera" class="rounded-full w-80 h-80 lg:w-[400px] lg:h-[400px] mx-auto shadow-2xl border-8 border-white object-cover">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Latest Blog Posts Section -->
-    <section id="blog" class="bg-bg-light py-24">
-        <div class="section-container">
-            <div class="text-center animate-on-scroll">
-                <h2 class="text-4xl font-bold mb-4 main-gradient-text">Latest Insights</h2>
-                <p class="text-lg text-text-light mb-12">Read my thoughts on navigating life, finding purpose, and the journey of personal growth.</p>
+        <!-- Why Me Section -->
+        <section id="why-me" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900 scroll-target">Why Partner With Me?</h2>
+                    <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">You're not just hiring a consultant; you're gaining a strategic partner dedicated to your success.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <!-- Stat 1 -->
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target">
+                        <h3 class="text-5xl font-extrabold gradient-text">300%+</h3>
+                        <p class="mt-2 font-semibold text-teal-800">Average Client Growth</p>
+                        <p class="mt-2 text-sm text-gray-500">Achieved in the first 6 months.</p>
+                    </div>
+                     <!-- Stat 2 -->
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target" style="transition-delay: 200ms;">
+                        <h3 class="text-5xl font-extrabold gradient-text">10+</h3>
+                        <p class="mt-2 font-semibold text-teal-800">Years of Experience</p>
+                        <p class="mt-2 text-sm text-gray-500">Across diverse industries in the African market.</p>
+                    </div>
+                     <!-- Stat 3 -->
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target" style="transition-delay: 400ms;">
+                        <h3 class="text-5xl font-extrabold gradient-text">AI-Powered</h3>
+                        <p class="mt-2 font-semibold text-teal-800">Proprietary Tools</p>
+                         <p class="mt-2 text-sm text-gray-500">Leveraging cutting-edge tech for superior results.</p>
+                    </div>
+                </div>
+                 <div class="mt-16 text-center scroll-target">
+                    <p class="text-gray-500 uppercase tracking-widest font-semibold">Trusted by leading brands</p>
+                    <div class="flex justify-center items-center gap-x-8 md:gap-x-12 flex-wrap mt-6">
+                        <img src="https://placehold.co/120x40?text=Brand+A" alt="Brand A logo" class="h-8 md:h-10 my-2 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40?text=Brand+B" alt="Brand B logo" class="h-8 md:h-10 my-2 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40?text=Brand+C" alt="Brand C logo" class="h-8 md:h-10 my-2 opacity-50 hover:opacity-100 transition">
+                        <img src="https://placehold.co/120x40?text=Brand+D" alt="Brand D logo" class="h-8 md:h-10 my-2 opacity-50 hover:opacity-100 transition">
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Blog Post 1 -->
-                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300">
-                    <img src="https://placehold.co/400x250/091a2f/fe2a8e?text=Mindfulness" alt="A photo of a person meditating." class="w-full h-auto rounded-lg mb-4">
-                    <h3 class="text-xl font-bold main-gradient-text mb-2">The Power of Mindful Moments</h3>
-                    <p class="text-sm text-text-dark">A short guide to finding peace and focus in a chaotic world.</p>
-                </div>
-                <!-- Blog Post 2 -->
-                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.1s;">
-                    <img src="https://placehold.co/400x250/091a2f/4a00e0?text=Purpose" alt="A photo of a compass pointing to purpose." class="w-full h-auto rounded-lg mb-4">
-                    <h3 class="text-xl font-bold main-gradient-text mb-2">Finding Your North Star</h3>
-                    <p class="text-sm text-text-dark">How to discover and align with your true purpose in life.</p>
-                </div>
-                <!-- Blog Post 3 -->
-                <div class="glass-card p-6 rounded-2xl animate-on-scroll hover:scale-105 transition-transform duration-300" style="transition-delay: 0.2s;">
-                    <img src="https://placehold.co/400x250/091a2f/fe2a8e?text=Resilience" alt="A photo of a strong tree against a storm." class="w-full h-auto rounded-lg mb-4">
-                    <h3 class="text-xl font-bold main-gradient-text mb-2">Building Unbreakable Resilience</h3>
-                    <p class="text-sm text-text-dark">Practical steps to bounce back stronger from life's setbacks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section with Glass Card -->
-    <section id="contact" class="section-container bg-bg-dark py-24">
-        <div class="max-w-2xl mx-auto text-center animate-on-scroll">
-            <h2 class="text-4xl font-bold mb-6 main-gradient-text">Let's Connect</h2>
-            <p class="text-lg mb-8 text-text-light">For speaking inquiries or personal questions, connect with me directly on WhatsApp.</p>
-            <div class="glass-card p-8 rounded-2xl">
-                <a href="https://wa.me/254702476038" target="_blank" class="btn-neon-glow py-4 px-12 rounded-full font-semibold text-xl inline-block">
-                    Send a Message on WhatsApp
-                </a>
+        <!-- My Proven Process Section -->
+        <section id="process" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900 scroll-target">My Proven Process</h2>
+                    <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">I follow a clear, collaborative process to ensure we achieve measurable results for your brand.</p>
+                </div>
+                <div class="relative">
+                    <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200" style="transform: translateY(-50%);"></div>
+                    <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8">
+                        <div class="text-center scroll-target">
+                            <div class="relative z-10 mx-auto bg-orange-100 text-orange-600 w-20 h-20 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                                <i data-lucide="search" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-teal-900 mt-6 mb-2">1. Deep Dive & Discovery</h3>
+                            <p class="text-gray-600">We start with a thorough analysis of your brand, audience, and market landscape to uncover key opportunities.</p>
+                        </div>
+                        <div class="text-center scroll-target" style="transition-delay: 200ms;">
+                            <div class="relative z-10 mx-auto bg-teal-100 text-teal-600 w-20 h-20 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                               <i data-lucide="map" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-teal-900 mt-6 mb-2">2. AI-Powered Strategy</h3>
+                            <p class="text-gray-600">I craft a custom marketing blueprint using proprietary AI tools to define your audience, messaging, and channels.</p>
+                        </div>
+                        <div class="text-center scroll-target" style="transition-delay: 400ms;">
+                            <div class="relative z-10 mx-auto bg-orange-100 text-orange-600 w-20 h-20 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                                <i data-lucide="trending-up" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-teal-900 mt-6 mb-2">3. Execute & Optimize</h3>
+                            <p class="text-gray-600">We launch the campaigns and continuously track performance, optimizing for growth and maximum ROI.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer with Gradient Separator -->
-    <footer class="bg-primary-blue text-center text-text-light py-10">
-        <div class="container mx-auto max-w-5xl animate-on-scroll">
-            <p class="mb-6 opacity-80">&copy; 2025 Tracy Waithera. All rights reserved.</p>
-            <div class="flex justify-center gap-8">
-                <a href="https://www.youtube.com/@Tracywaithera" target="_blank" class="text-text-light hover:text-secondary-yellow transition-colors duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.13-.178-9.06-.062-12.28.163C4.94 3.766 2.768 5.485 2.126 8.78c-.28 1.48-.386 3.016-.28 4.498.11 1.482.38 3.018.66 4.498.42 2.21 2.22 3.86 4.79 4.19.86.11 1.7.15 2.58.19 3.06.12 6.13.12 9.19 0 .88-.04 1.72-.08 2.58-.19 2.57-.33 4.37-1.98 4.79-4.19zM9.999 15.518V8.482L15.626 12l-5.627 3.518z"></path></svg>
-                </a>
-                <a href="https://www.instagram.com/tracywaithera" target="_blank" class="text-text-light hover:text-secondary-yellow transition-colors duration-300">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.858.076 1.15.057 1.7.234 2.054.375.46.18.79.394 1.144.748.354.354.568.684.748 1.144.14.354.318.904.375 2.054.063 1.274.076 1.654.076 4.858s-.013 3.584-.076 4.858c-.057 1.15-.234 1.7-.375 2.054-.18.46-.394.79-.748 1.144-.354.354-.568.684-.748-1.144-.14-.354-.318-.904-.375-2.054-.063-1.274-.076-1.654-.076-4.858s.013-3.584.076-4.858c.057-1.15.234-1.7.375-2.054.18-.46.394-.79.748-1.144.354-.354.684-.568 1.144-.748.354-.14.904-.318 2.054-.375C8.416 2.176 8.796 2.163 12 2.163zM12 0C8.675 0 8.243.013 6.94.076c-1.28.06-2.063.26-2.61.474-.5.2-.87.48-1.21.82-.34.34-.62.71-.82 1.21-.214.547-.414 1.33-.474 2.61C2.176 8.243 2.163 8.675 2.163 12s.013 3.757.076 5.06c.06 1.28.26 2.063.474 2.61.2.5.48.87.82 1.21.34.34.71.62 1.21.82.547.214 1.33.414 2.61.474C8.243 21.824 8.675 21.837 12 21.837s3.757-.013 5.06-.076c1.28-.06 2.063-.26 2.61-.474.5-.2.87-.48 1.21-.82.34-.34.62-.71.82-1.21.214-.547.414-1.33.474-2.61.063-1.283.076-1.715.076-5.06s-.013-3.757-.076-5.06c-.06-1.28-.26-2.063-.474-2.61-.2-.5-.48-.87-.82-1.21-.34-.34-.71-.62-1.21-.82-.547-.214-1.33-.414-2.61-.474C15.757 2.176 15.325 2.163 12 2.163zm0 3.864c2.651 0 4.81 2.159 4.81 4.81s-2.159 4.81-4.81 4.81-4.81-2.159-4.81-4.81 2.159-4.81 4.81-4.81zm0 2.508c-1.272 0-2.302 1.03-2.302 2.302s1.03 2.302 2.302 2.302 2.302-1.03 2.302-2.302-1.03-2.302-2.302-2.302zm6.265-2.203c-.495 0-.895-.4-.895-.895s.4-.895.895-.895.895.4.895.895-.4.895-.895.895z"></path></svg>
-                </a>
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900 scroll-target">My Expertise</h2>
+                    <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">I offer a suite of services designed to build powerful brands and drive sustainable growth.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-target">
+                        <div class="bg-orange-100 text-orange-600 w-14 h-14 rounded-full flex items-center justify-center mb-5"><i data-lucide="pen-tool"></i></div>
+                        <h3 class="text-xl font-bold text-teal-900 mb-3">Content Strategy & Creation</h3>
+                        <p class="text-gray-600">AI-assisted content that resonates with your audience and ranks on search engines.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-target" style="transition-delay: 200ms;">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-full flex items-center justify-center mb-5"><i data-lucide="users"></i></div>
+                        <h3 class="text-xl font-bold text-teal-900 mb-3">Social Media Growth</h3>
+                        <p class="text-gray-600">Targeted campaigns and community management to grow your following and engagement.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 scroll-target" style="transition-delay: 400ms;">
+                        <div class="bg-orange-100 text-orange-600 w-14 h-14 rounded-full flex items-center justify-center mb-5"><i data-lucide="bar-chart-3"></i></div>
+                        <h3 class="text-xl font-bold text-teal-900 mb-3">Performance Marketing</h3>
+                        <p class="text-gray-600">Data-driven ad campaigns on social media and Google to maximize your ROI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights Section (Educative) -->
+        <section id="insights" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-white p-8 md:p-12 rounded-2xl shadow-xl">
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <span class="text-sm font-bold uppercase text-orange-500 scroll-target">Free Resource</span>
+                        <h2 class="text-3xl font-bold text-teal-900 mt-2 scroll-target" style="transition-delay: 100ms;">Unlock Your Marketing Potential</h2>
+                        <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">Download my free 5-step checklist to start building a marketing strategy that gets results. It's packed with the foundational secrets I use with my top clients.</p>
+                        <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'd%20love%20to%20get%20your%20free%205-step%20marketing%20checklist." target="_blank" class="mt-6 inline-block bg-teal-700 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-teal-800 transition-all transform hover:scale-105 shadow-lg scroll-target" style="transition-delay: 300ms;">Download via WhatsApp</a>
+                    </div>
+                     <div class="md:w-1/2 w-full mt-8 md:mt-0 flex justify-center scroll-target" style="transition-delay: 400ms;">
+                         <div class="bg-gray-100 p-6 rounded-lg w-full max-w-sm">
+                             <h4 class="font-bold text-teal-800 flex items-center"><i data-lucide="check-square" class="w-5 h-5 mr-2 text-orange-500"></i>Checklist Includes:</h4>
+                             <ul class="mt-4 space-y-3 text-sm text-gray-700">
+                                 <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 mr-2 text-teal-600 mt-0.5 flex-shrink-0"></i>Defining Your Ideal Customer Avatar</li>
+                                 <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 mr-2 text-teal-600 mt-0.5 flex-shrink-0"></i>Crafting Your Core Message</li>
+                                 <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 mr-2 text-teal-600 mt-0.5 flex-shrink-0"></i>Choosing the Right Platforms</li>
+                                 <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 mr-2 text-teal-600 mt-0.5 flex-shrink-0"></i>Setting Measurable KPIs</li>
+                                  <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 mr-2 text-teal-600 mt-0.5 flex-shrink-0"></i>Content Planning Basics</li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section id="testimonials" class="py-16 md:py-24 bg-white">
+             <div class="container mx-auto px-6">
+                 <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900 scroll-target">What My Clients Say</h2>
+                    <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">Real results from real businesses I've had the pleasure to work with.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target">
+                        <p class="text-gray-700 italic mb-6">"Working with Tracy was a game-changer. She tripled our engagement in one month and gave us a clear path for the future. Her insights are invaluable."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/F97316/FFFFFF?text=AK" class="w-12 h-12 rounded-full mr-4" alt="Photo of Amara Konate">
+                            <div>
+                                <p class="font-bold text-teal-900">Amara Konate</p>
+                                <p class="text-sm text-gray-500">Founder, AfroChic Boutique</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target" style="transition-delay: 200ms;">
+                        <p class="text-gray-700 italic mb-6">"Tracy's understanding of the African market is second to none. She helped us achieve a 200% ROI on our ad spend. Highly recommend!"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/0D9488/FFFFFF?text=BE" class="w-12 h-12 rounded-full mr-4" alt="Photo of Bosede Egbuson">
+                            <div>
+                                <p class="font-bold text-teal-900">Bosede Egbuson</p>
+                                <p class="text-sm text-gray-500">Marketing Lead, TechNext</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl scroll-target" style="transition-delay: 400ms;">
+                        <p class="text-gray-700 italic mb-6">"Before Tracy, we were just guessing. Now, we have a data-driven strategy that actually works. Our sales have never been better."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/48x48/F97316/FFFFFF?text=SO" class="w-12 h-12 rounded-full mr-4" alt="Photo of Samuel Oti">
+                            <div>
+                                <p class="font-bold text-teal-900">Samuel Oti</p>
+                                <p class="text-sm text-gray-500">CEO, Kobo Kicks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consultations Section (Monetary Trap) -->
+        <section id="consultations" class="py-16 md:py-24 bg-gray-50 overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 md:mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-teal-900 scroll-target">Ready to Grow? Let's Talk.</h2>
+                    <p class="mt-4 text-gray-600 scroll-target" style="transition-delay: 200ms;">Choose the engagement that’s right for your business. I offer clear, value-packed options to get you started.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                    <!-- Option 1: Strategy Session -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 scroll-target transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                        <div class="text-center">
+                             <h3 class="text-2xl font-bold text-teal-900">Strategy Session</h3>
+                             <p class="text-gray-500 mt-2">A one-time deep dive.</p>
+                             <p class="text-4xl font-extrabold text-teal-900 mt-6"><span class="text-2xl align-top font-medium text-gray-500 mr-1">KES</span>25,000</p>
+                        </div>
+                        <ul class="space-y-4 mt-8 text-gray-600">
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>90-Minute Video Call</li>
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>Actionable Recommendations</li>
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>Recording of Our Call</li>
+                        </ul>
+                        <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'd%20like%20to%20book%20a%20Strategy%20Session." target="_blank" class="mt-8 block w-full text-center border-2 border-teal-700 text-teal-700 font-semibold px-6 py-3 rounded-full hover:bg-teal-700 hover:text-white transition-all">Book Your Session</a>
+                    </div>
+                    <!-- Option 2: Marketing Blueprint (Highlighted) -->
+                    <div class="bg-teal-800 text-white p-8 rounded-3xl shadow-2xl shadow-teal-500/30 relative scroll-target lg:scale-110 z-10" style="transition-delay: 200ms; background-image: linear-gradient(145deg, #0f766e, #115e59);">
+                         <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                            <span class="bg-orange-500 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">MOST POPULAR</span>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold">Marketing Blueprint</h3>
+                            <p class="text-teal-200 mt-2">Your complete roadmap.</p>
+                             <p class="text-4xl font-extrabold text-white mt-6"><span class="text-2xl align-top font-medium text-teal-200 mr-1">KES</span>150,000</p>
+                        </div>
+                        <ul class="space-y-4 mt-8 text-teal-100">
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-orange-400 w-5 h-5 mr-3 flex-shrink-0"></i>Full Market & Competitor Audit</li>
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-orange-400 w-5 h-5 mr-3 flex-shrink-0"></i>Custom 3-Month Strategy</li>
+                            <li class="flex items-center"><i data-lucide="check-circle-2" class="text-orange-400 w-5 h-5 mr-3 flex-shrink-0"></i>Audience Personas & Messaging</li>
+                             <li class="flex items-center"><i data-lucide="check-circle-2" class="text-orange-400 w-5 h-5 mr-3 flex-shrink-0"></i>Two Follow-up Calls</li>
+                        </ul>
+                        <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'm%20interested%20in%20the%20Marketing%20Blueprint." target="_blank" class="mt-8 block w-full text-center bg-orange-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg">Get Your Blueprint</a>
+                    </div>
+                    <!-- Option 3: Monthly Retainer -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 scroll-target transition-all duration-300 hover:shadow-2xl hover:scale-105" style="transition-delay: 400ms;">
+                         <div class="text-center">
+                            <h3 class="text-2xl font-bold text-teal-900">Monthly Retainer</h3>
+                            <p class="text-gray-500 mt-2">Your dedicated partner.</p>
+                            <p class="text-4xl font-extrabold text-teal-900 mt-6">Let's Talk</p>
+                        </div>
+                        <ul class="space-y-4 mt-8 text-gray-600">
+                           <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>Ongoing Strategy & Execution</li>
+                           <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>Weekly Performance Calls</li>
+                           <li class="flex items-center"><i data-lucide="check-circle-2" class="text-teal-600 w-5 h-5 mr-3 flex-shrink-0"></i>Priority Support & Access</li>
+                        </ul>
+                        <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'd%20like%20to%20discuss%20a%20monthly%20retainer." target="_blank" class="mt-8 block w-full text-center border-2 border-teal-700 text-teal-700 font-semibold px-6 py-3 rounded-full hover:bg-teal-700 hover:text-white transition-all">Book a Free Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing CTA Section -->
+        <section class="py-20 md:py-32 relative overflow-hidden bg-white">
+             <div class="absolute inset-0 pattern-bg cta-glow"></div>
+             <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-teal-900 leading-tight mb-8 scroll-target">Ready to build an unforgettable brand?</h2>
+                    <p class="text-lg text-gray-600 mb-8 scroll-target" style="transition-delay: 100ms;">Let's have a chat. My initial 15-minute discovery call is completely free. We'll discuss your goals and see if we're a good fit. No pressure, just possibilities.</p>
+                    <div class="scroll-target" style="transition-delay: 200ms;">
+                        <a href="https://wa.me/254702476038?text=Hello%20Tracy,%20I'd%20like%20to%20book%20my%20free%2015-minute%20discovery%20call." target="_blank" class="bg-orange-500 text-white font-semibold px-10 py-4 rounded-full hover:bg-orange-600 transition-all transform hover:scale-105 shadow-xl text-lg">Book My Free Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-teal-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <h3 class="text-2xl font-bold">Tracy Waithera</h3>
+                    <p class="mt-2 text-teal-200">Founder, Trouve Marketing Solutions</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 md:col-span-3">
+                    <div>
+                        <h4 class="font-semibold text-white tracking-wider">Menu</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#services" class="text-teal-200 hover:text-white">Services</a></li>
+                            <li><a href="#why-me" class="text-teal-200 hover:text-white">Why Me</a></li>
+                            <li><a href="#consultations" class="text-teal-200 hover:text-white">Work With Me</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-white tracking-wider">Connect</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#insights" class="text-teal-200 hover:text-white">Insights</a></li>
+                            <li><a href="https://wa.me/254702476038?text=Hello%20Tracy!" target="_blank" class="text-teal-200 hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-white tracking-wider">Legal</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-teal-200 hover:text-white">Privacy</a></li>
+                            <li><a href="#" class="text-teal-200 hover:text-white">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-teal-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-teal-300">&copy; 2025 Tracy Waithera. All Rights Reserved.</p>
+                <div class="flex space-x-5 mt-6 sm:mt-0">
+                    <a href="#" class="text-teal-300 hover:text-white"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="text-teal-300 hover:text-white"><i data-lucide="linkedin"></i></a>
+                    <a href="#" class="text-teal-300 hover:text-white"><i data-lucide="facebook"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Parallax Effect for the Hero Shapes
-        window.addEventListener('scroll', function() {
-            const shapes = document.querySelectorAll('.parallax-shape');
-            let scrollPosition = window.pageYOffset;
-            shapes.forEach(shape => {
-                const speed = parseFloat(shape.dataset.speed || 0.5);
-                shape.style.transform = `translateY(${scrollPosition * speed}px)`;
-            });
+        lucide.createIcons();
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-
-        // Intersection Observer for scroll animations
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            document.querySelectorAll('.animate-on-scroll').forEach(element => {
-                observer.observe(element);
+        const targets = document.querySelectorAll('.scroll-target');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        });
+        }, { threshold: 0.1 });
+        targets.forEach(target => { observer.observe(target); });
     </script>
 </body>
 </html>
+
