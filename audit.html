@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Health Audit - Tracy Waithera</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for professional clarity -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --color-teal: #168a7a; /* Original Teal */
+            --color-dark-teal: #0A3631; /* Dark Section for Header/Footer */
+            --color-orange: #FF6F2E; /* CTA/Accent Orange */
+            --color-light-bg: #f0fdfa; /* Light Teal background */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-light-bg);
+            color: #1f2937; /* Dark text */
+        }
+        .bg-trouve-teal { background-color: var(--color-teal); }
+        .text-trouve-teal { color: var(--color-teal); }
+        .border-trouve-teal { border-color: var(--color-teal); }
+        .bg-trouve-orange { background-color: var(--color-orange); }
+        .text-trouve-orange { color: var(--color-orange); }
+        .hover\:bg-trouve-orange:hover { background-color: var(--color-orange); }
+        .bg-dark-teal { background-color: var(--color-dark-teal); }
+        /* Custom class for the dark teal text color */
+        .text-dark-teal { color: var(--color-dark-teal); } 
+
+        /* Card-style radio button styling with lift/glow animation */
+        .card-option {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .card-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        /* Hidden radio input styling */
+        input[type="radio"]:checked + .card-option {
+            background-color: var(--color-teal);
+            color: white;
+            border-color: var(--color-teal);
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(22, 138, 122, 0.7); /* Stronger glow on selection */
+        }
+        input[type="radio"]:checked + .card-option .option-icon {
+            color: var(--color-orange);
+        }
+
+        /* --- FADE TRANSITION STYLES (Presentation Slide Style) --- */
+        .slide-container {
+            position: relative;
+            /* Set a min-height to prevent layout collapse during transition */
+            min-height: 400px; 
+        }
+        .question-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none; /* Disable interaction when hidden */
+            transition: opacity 0.5s ease-in-out; /* Smooth transition */
+            z-index: 10;
+        }
+        .question-slide.active {
+            opacity: 1;
+            pointer-events: auto; /* Enable interaction when active */
+            z-index: 20;
+        }
+        /* -------------------------------------------------------- */
+
+        /* Glowing Progress Line */
+        #progressBar {
+            height: 4px;
+            background-color: var(--color-teal);
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 10px var(--color-teal), 0 0 5px var(--color-teal); /* Glowing effect */
+        }
+        /* Mobile Modal Improvement */
+        #modalContent {
+             max-width: 90%; /* Ensure modal is responsive on small screens */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header (Creative & Dark Section) -->
+    <header class="bg-dark-teal text-white shadow-xl sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#" class="text-2xl font-extrabold text-trouve-teal">Tracy Waithera</a>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#" class="hover:text-trouve-teal transition">Services</a>
+                <a href="#" class="hover:text-trouve-teal transition">Websites</a>
+                <a href="#" class="hover:text-trouve-teal transition">Consultations</a>
+                <a href="#" class="hover:text-trouve-teal transition">Insights</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <a href="#" class="bg-trouve-orange text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:opacity-90 transition active:scale-95">
+                Work With Me
+            </a>
+        </div>
+    </header>
+
+    <!-- Progress Bar (Glowing Line) -->
+    <div class="w-full bg-gray-200/50">
+        <div id="progressBar" style="width: 0%;"></div>
+    </div>
+
+    <!-- Main Content (Centered) -->
+    <main class="flex-grow flex items-start justify-center p-4 sm:p-8">
+        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl shadow-teal-100 border border-gray-100 p-6 sm:p-10 my-10">
+            
+            <!-- Audit Introduction & Progress -->
+            <div id="introSection" class="text-center space-y-4 mb-8">
+                <div class="bg-trouve-teal inline-block p-3 rounded-xl mb-4 shadow-lg">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Your Brand Health Audit</h1>
+                
+                <!-- NEW BRIEF STYLED WITH DARK TEAL -->
+                <p class="text-lg text-dark-teal max-w-xl mx-auto font-medium border-b pb-4 border-trouve-teal/30">
+                    This confidential audit quickly assesses your brand's performance across four core pillars: **Identity, Strategy, Visuals, and Execution**. Get a personalized health score and actionable insight into the weakest area holding back your revenue growth.
+                </p>
+                <!-- END NEW BRIEF -->
+
+                <p id="progress-text" class="text-lg text-gray-600 font-semibold pt-2">
+                    Discover the strengths and weaknesses of your current strategy in under 5 minutes. (8 Questions)
+                </p>
+            </div>
+
+            <!-- Question Slides Container -->
+            <form id="brandAuditForm">
+                <div id="slides-wrapper" class="slide-container">
+                    <!-- Slides are injected here by JavaScript -->
+                </div>
+            </form>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-end mt-8 pt-4 border-t border-gray-100">
+                <button type="button" id="nextButton" onclick="checkAnswer(event)" class="bg-trouve-teal text-white font-bold py-3 px-8 rounded-xl shadow-md hover:bg-opacity-90 transition active:scale-95 transform group disabled:opacity-50" disabled>
+                    Submit & Next <i data-lucide="arrow-right" class="w-5 h-5 ml-2 inline-block group-hover:translate-x-1 transition-transform"></i>
+                </button>
+                <button type="button" id="resultButton" onclick="calculateScore()" class="bg-trouve-orange text-white font-bold py-3 px-8 rounded-xl shadow-md hover:bg-opacity-90 transition active:scale-95 transform hidden group">
+                    <i data-lucide="monitor-check" class="w-5 h-5 mr-2 inline-block group-hover:rotate-3 transition-transform"></i> Reveal Score
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer (Professional & Dark Section) -->
+    <footer class="bg-dark-teal text-white mt-12 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-white/10 pb-10 mb-8">
+                <div class="col-span-2 md:col-span-2">
+                    <h4 class="text-2xl font-extrabold text-trouve-teal mb-2">Tracy Waithera</h4>
+                    <p class="text-sm text-white/70">Founder, Trouve Marketing Solutions</p>
+                </div>
+                
+                <!-- Menu Links -->
+                <div>
+                    <h5 class="font-bold text-trouve-teal mb-3">Menu</h5>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="#" class="hover:text-trouve-teal transition">Services</a></li>
+                        <li><a href="#" class="hover:text-trouve-teal transition">Websites</a></li>
+                        <li><a href="#" class="hover:text-trouve-teal transition">Consultations</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Connect Links -->
+                <div>
+                    <h5 class="font-bold text-trouve-teal mb-3">Connect</h5>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="#" class="hover:text-trouve-teal transition">Insights</a></li>
+                        <li><a href="#" class="hover:text-trouve-teal transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h5 class="font-bold text-trouve-teal mb-3">Legal</h5>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="#" class="hover:text-trouve-teal transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-trouve-teal transition">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright and Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-white/60">
+                <p>&copy; 2025 Tracy Waithera. All Rights Reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-trouve-teal transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-trouve-teal transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-trouve-teal transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Result Modal (Custom Alert) -->
+    <div id="resultModal" class="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center p-4 z-50 hidden transition-opacity" onclick="closeModal(event)">
+        <div id="modalContent" class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 transition-transform duration-300 transform scale-95">
+            <div class="text-center mb-6">
+                <i id="modalIcon" data-lucide="activity" class="w-12 h-12 text-gray-500 mx-auto mb-4"></i>
+                <h3 id="modalTitle" class="text-2xl font-extrabold text-gray-900 mb-1">Your Brand Health Check</h3>
+            </div>
+            
+            <div id="scoreSummary" class="text-center mb-6 p-4 rounded-lg border border-gray-100 bg-gray-50">
+                <p class="text-sm text-gray-600 font-semibold mb-2">Your Current Brand Health Score:</p>
+                <p class="text-5xl font-extrabold text-trouve-teal" id="finalScoreDisplay">--</p>
+            </div>
+
+            <div id="feedbackSection" class="space-y-4 mb-8">
+                <p class="font-semibold text-lg text-gray-800 flex items-center">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-2 text-trouve-orange"></i> Coach's Insight:
+                </p>
+                <p id="coachFeedback" class="text-gray-700 leading-relaxed"></p>
+                <p id="weaknessHint" class="text-sm font-medium text-red-600 bg-red-50 p-3 rounded-lg hidden"></p>
+            </div>
+
+            <!-- Consultation CTA -->
+            <div id="consultationBlock" class="bg-trouve-teal text-white p-5 rounded-xl text-center space-y-4">
+                <p class="text-xl font-bold">Ready for a Strategy Deep Dive?</p>
+                <p class="text-sm font-light">Let's turn that score into a strategy. Book your personalized 1:1 consultation now.</p>
+                <div class="flex items-center justify-center space-x-4 font-semibold text-lg">
+                    <i data-lucide="hand-coins" class="w-5 h-5"></i>
+                    <span>Fee: KES 10,000</span>
+                </div>
+                <a id="whatsappButton" href="#" target="_blank" class="w-full inline-flex items-center justify-center bg-trouve-orange text-white font-extrabold py-3 rounded-lg shadow-lg hover:bg-opacity-90 transition-all active:scale-95 transform">
+                    <i data-lucide="send" class="w-5 h-5 mr-2"></i> Talk to Your Coach (WhatsApp)
+                </a>
+                <p class="text-xs text-white/70">I'm available on 0702476038.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for mandatory fields -->
+    <div id="errorToast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-full shadow-xl flex items-center space-x-3 z-50 hidden">
+        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+        <span class="font-medium">Please select an option to move forward.</span>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- Core Logic & Multi-Step State ---
+        let currentStep = 0; // Start at index 0 (Q1)
+        const totalSteps = 8;
+        const WA_NUMBER = '254702476038';
+        
+        const slidesWrapper = document.getElementById('slides-wrapper');
+        const nextButton = document.getElementById('nextButton');
+        const resultButton = document.getElementById('resultButton');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progress-text');
+        
+        // --- Quiz Questions (Brand Audit Content) ---
+        const brandAuditQuestions = [
+            { question: "Q1: Can you define your ideal client in 1-2 specific sentences?", category: 'Identity', icon: 'user-square', 
+              options: [
+                { text: "Yes, with deep clarity.", detail: "I know their pain points, income, and desires.", value: 10, color: 'green' },
+                { text: "Generally, but it's broad.", detail: "I target 'small businesses' or 'young professionals'.", value: 5, color: 'yellow' },
+                { text: "No, I serve everyone.", detail: "My audience is whoever pays me.", value: 0, color: 'red' },
+              ]},
+            { question: "Q2: Have you documented your 3-5 core brand values?", category: 'Identity', icon: 'book-open', 
+              options: [
+                { text: "Yes, and I live by them.", detail: "They guide hiring, pricing, and content.", value: 10, color: 'green' },
+                { text: "I have a vague idea.", detail: "I know generally what I stand for.", value: 5, color: 'yellow' },
+                { text: "No, I don't need them.", detail: "I focus purely on sales and execution.", value: 0, color: 'red' },
+              ]},
+            { question: "Q3: Do you know what makes you distinctly different from your closest competitors?", category: 'Strategy', icon: 'bar-chart-3', 
+              options: [
+                { text: "Yes, I own a niche.", detail: "I have a unique approach or offer they cannot copy.", value: 10, color: 'green' },
+                { text: "I'm slightly better/cheaper.", detail: "My differentiator is based on price or quality, not unique value.", value: 5, color: 'yellow' },
+                { text: "No, I blend in.", detail: "I struggle to explain why someone should pick me.", value: 0, color: 'red' },
+              ]},
+            { question: "Q4: Do you have a clear, documented plan for what content you will post over the next 30 days?", category: 'Strategy', icon: 'calendar-check', 
+              options: [
+                { text: "Yes, I plan and batch.", detail: "I have topics, formats, and CTAs ready.", value: 10, color: 'green' },
+                { text: "I post when inspiration strikes.", detail: "I generate ideas day-by-day.", value: 5, color: 'yellow' },
+                { text: "No, I rarely post.", detail: "My profile is mostly dormant.", value: 0, color: 'red' },
+              ]},
+            { question: "Q5: Is your logo/profile picture and primary brand color consistent across all platforms?", category: 'Visuals', icon: 'layout-template', 
+              options: [
+                { text: "Yes, 100% unified.", detail: "It looks professional everywhere.", value: 10, color: 'green' },
+                { text: "Mostly, but some links conflict.", detail: "There are different shades of colors or slightly different logos.", value: 5, color: 'yellow' },
+                { text: "No, it’s disjointed.", detail: "I use different colors/images on different sites.", value: 0, color: 'red' },
+              ]},
+            { question: "Q6: Do you track key metrics (views, engagement, sales) to evaluate your content's effectiveness?", category: 'Visuals', icon: 'trending-up', 
+              options: [
+                { text: "Yes, data drives decisions.", detail: "I adjust strategy based on what works best.", value: 10, color: 'green' },
+                { text: "I check numbers occasionally.", detail: "I look at likes/views, but I don't analyze them deeply.", value: 5, color: 'yellow' },
+                { text: "No, it's too confusing.", detail: "I just focus on creating content.", value: 0, color: 'red' },
+              ]},
+            { question: "Q7: Do you have a specific, high-value asset that captures leads (email addresses)?", category: 'Execution', icon: 'download', 
+              options: [
+                { text: "Yes, a dedicated lead magnet.", detail: "I consistently grow my email list.", value: 10, color: 'green' },
+                { text: "I link directly to my services/shop.", detail: "I skip the email capture step.", value: 5, color: 'yellow' },
+                { text: "No, I rely on cold outreach.", detail: "I wait for people to find me.", value: 0, color: 'red' },
+              ]},
+            { question: "Q8: How often do you audit your existing brand assets for relevance?", category: 'Execution', icon: 'repeat', 
+              options: [
+                { text: "Quarterly or more often.", detail: "I proactively adapt to market changes.", value: 10, color: 'green' },
+                { text: "Annually, or when needed.", detail: "I update only when something breaks.", value: 5, color: 'yellow' },
+                { text: "Never, or not in years.", detail: "My bio/website is outdated.", value: 0, color: 'red' },
+              ]},
+        ];
+
+        let answers = new Array(totalSteps).fill(null); // To store user's selected values
+
+        /**
+         * Generates the HTML structure for all questions and injects them into the wrapper.
+         */
+        function generateQuestionSlides() {
+            slidesWrapper.innerHTML = ''; // Clear previous slides
+
+            brandAuditQuestions.forEach((q, index) => {
+                const slide = document.createElement('div');
+                slide.id = `slide-${index}`;
+                slide.classList.add('question-slide', 'space-y-6');
+                
+                // Note: Tailwind classes like border-green-200 are used here. 
+                // Since this is a self-contained HTML file using the CDN, these need to be explicitly listed or used 
+                // in the HTML/JS for Tailwind JIT to pick them up, or we use explicit colors.
+                // For simplicity and aesthetic control, the `card-option` styling uses dynamic Lucide icons for visual aid.
+                let optionsHtml = q.options.map(opt => `
+                    <label>
+                        <input type="radio" name="q${index + 1}" value="${opt.value}" class="hidden" onchange="enableNextButton()">
+                        <div class="card-option p-4 rounded-xl border-2 border-gray-200 bg-white shadow-sm hover:border-trouve-teal">
+                            <i data-lucide="${q.icon}" class="w-5 h-5 text-${opt.color}-600 mb-1 option-icon"></i>
+                            <p class="font-medium">${opt.text}</p>
+                            <p class="text-xs opacity-70">${opt.detail}</p>
+                        </div>
+                    </label>
+                `).join('');
+
+                slide.innerHTML = `
+                    <h2 class="text-xl font-bold text-trouve-teal flex items-center mb-4">
+                        <span class="text-gray-900 mr-2">${index + 1}/${totalSteps}:</span> ${q.category} Audit
+                    </h2>
+                    <label class="block text-lg font-semibold text-gray-800 mb-4">${q.question}</label>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${optionsHtml}
+                    </div>
+                `;
+                slidesWrapper.appendChild(slide);
+            });
+            // Re-render Lucide icons after injecting new HTML
+            lucide.createIcons(); 
+        }
+
+        /**
+         * Updates the UI to show the question at the given index using fade transition.
+         */
+        function showQuestion(newIndex, duration = 500) {
+            const allSlides = document.querySelectorAll('.question-slide');
+            const newStep = newIndex + 1;
+
+            // Update Progress Bar
+            const progress = (newStep / totalSteps) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Update Progress Text
+            progressText.textContent = `Question ${newIndex + 1} of ${totalSteps}`;
+
+            // Check if we are showing a question or the final results
+            if (newIndex < totalSteps) {
+                // Hide current slide (if it exists)
+                if (currentStep < allSlides.length) {
+                    allSlides[currentStep].style.transitionDuration = `${duration}ms`;
+                    allSlides[currentStep].classList.remove('active');
+                }
+
+                const nextSlide = allSlides[newIndex];
+                
+                // Show next slide
+                setTimeout(() => {
+                    if(nextSlide) {
+                         nextSlide.style.transitionDuration = `${duration}ms`;
+                         nextSlide.classList.add('active');
+                    }
+                    currentStep = newIndex;
+                    
+                    // Reset button state for the new question
+                    nextButton.disabled = answers[currentStep] === null;
+                    
+                    // Update button text for the last question
+                    if (currentStep === totalSteps - 1) {
+                        nextButton.textContent = 'Review & Score';
+                    } else {
+                        nextButton.textContent = 'Submit & Next';
+                    }
+
+                    nextButton.classList.remove('hidden');
+                    resultButton.classList.add('hidden');
+
+                }, duration); 
+
+            } else {
+                // Final slide transition complete, hide question area and show result button
+                slidesWrapper.innerHTML = `
+                    <div class="text-center p-8 bg-trouve-teal/10 rounded-xl shadow-inner border border-trouve-teal/20">
+                        <h2 class="text-2xl font-extrabold text-trouve-teal mb-2">Audit Complete!</h2>
+                        <p class="text-lg text-gray-700">Click below to generate your personalized Brand Health Score and insights.</p>
+                    </div>
+                `;
+                progressText.textContent = `Audit Complete`;
+                nextButton.classList.add('hidden');
+                resultButton.classList.remove('hidden');
+                // The progress bar should be 100% now
+                progressBar.style.width = '100%'; 
+            }
+        }
+
+        /**
+         * Enables the Next button when an option is selected and stores the answer.
+         */
+        function enableNextButton() {
+            const form = document.getElementById('brandAuditForm');
+            const questionName = `q${currentStep + 1}`;
+            const selectedOption = form.elements[questionName].value;
+            
+            if (selectedOption !== undefined) {
+                nextButton.disabled = false;
+                answers[currentStep] = parseInt(selectedOption); // Store the numerical score
+            }
+        }
+
+        /**
+         * Checks the answer and advances to the next step.
+         */
+        function checkAnswer(event) {
+            event.preventDefault();
+
+            if (answers[currentStep] === null) {
+                showToast("Please select an option to move forward.");
+                return;
+            }
+
+            // Disable all options on the current slide immediately after answering
+            const currentQuestionName = `q${currentStep + 1}`;
+            document.querySelectorAll(`input[name="${currentQuestionName}"]`).forEach(input => {
+                input.disabled = true;
+            });
+            
+            // We advance to the next step index (currentStep + 1)
+            const nextIndex = currentStep + 1;
+            
+            // Show next question with fade transition
+            showQuestion(nextIndex);
+            
+            // Disable the button temporarily during transition
+            nextButton.disabled = true;
+        }
+
+        function calculateScore() {
+            if (answers.includes(null)) {
+                 showToast("Please ensure all questions are answered before scoring.");
+                 return;
+            }
+
+            let totalScore = answers.reduce((sum, score) => sum + score, 0);
+            const finalPercentage = Math.round((totalScore / (totalSteps * 10)) * 100);
+            
+            // Calculate scores per category for detailed feedback
+            const categoryScores = {
+                Identity: { score: 0, max: 20, weight: 0 }, // Q1, Q2
+                Strategy: { score: 0, max: 20, weight: 0 }, // Q3, Q4
+                Visuals: { score: 0, max: 20, weight: 0 },  // Q5, Q6
+                Execution: { score: 0, max: 20, weight: 0 },// Q7, Q8
+            };
+
+            // Calculate category scores
+            brandAuditQuestions.forEach((q, index) => {
+                if (answers[index] !== null) {
+                    categoryScores[q.category].score += answers[index];
+                    categoryScores[q.category].weight += 1;
+                }
+            });
+
+            // Generate Feedback and trigger modal
+            generateFeedback(finalPercentage, categoryScores);
+            
+            // Show modal
+            const modal = document.getElementById('resultModal');
+            modal.classList.remove('hidden');
+            // Re-create icons inside the modal just in case
+            lucide.createIcons();
+        }
+
+        function generateFeedback(score, categoryScores) {
+            const scoreDisplay = document.getElementById('finalScoreDisplay');
+            const feedbackEl = document.getElementById('coachFeedback');
+            const weaknessHintEl = document.getElementById('weaknessHint');
+            const modalTitleEl = document.getElementById('modalTitle');
+            const modalIconContainer = document.getElementById('modalIcon').parentNode;
+            const whatsappButtonEl = document.getElementById('whatsappButton');
+            
+            let title = "", message = "", weakness = "", icon = "activity", iconColor = "text-gray-500", waMessageText = "";
+
+            // Determine Weakest Area (based on lowest score percentage)
+            let weakestCategory = "";
+            let minPercentage = 101; // Start higher than possible
+            
+            Object.keys(categoryScores).forEach(cat => {
+                const catScore = categoryScores[cat].score;
+                const catMax = categoryScores[cat].max;
+                const percentage = (catScore / catMax) * 100;
+
+                if (percentage < minPercentage) {
+                    minPercentage = percentage;
+                    weakestCategory = cat;
+                }
+            });
+
+            const consultationBlock = document.getElementById('consultationBlock');
+            consultationBlock.classList.remove('bg-red-600', 'bg-yellow-700', 'bg-trouve-teal');
+
+
+            // --- Tiers & Feedback ---
+            if (score <= 40) {
+                title = "Critical Brand Leakage";
+                icon = "alert-octagon";
+                iconColor = "text-red-600";
+                message = `Your brand foundation is critically weak (lowest score in ${weakestCategory}: ${minPercentage.toFixed(0)}%). Your answers show a severe lack of *clarity* and *consistency*—you are leaving money on the table because clients can't clearly define what you offer. Immediate action is non-negotiable.`;
+                waMessageText = `Hi Brand Coach, I just completed the Brand Audit and scored ${score}%. My ${weakestCategory} is critically weak, and I need immediate help to build my brand foundation. I am ready to proceed with the KES 10,000 consultation and would like to request the available payment details (e.g., M-Pesa, Bank details) to confirm my booking. Thank you!`;
+                weakness = `🚨 **Your Weakest Area is: ${weakestCategory}** (Score: ${minPercentage.toFixed(0)}%). This is your first priority.`;
+                consultationBlock.classList.add('bg-red-600');
+
+            } else if (score <= 70) {
+                title = "Strategy Refinement Needed";
+                icon = "trending-down";
+                iconColor = "text-yellow-600";
+                message = `You have a solid base, but key areas like **${weakestCategory}** (score ${minPercentage.toFixed(0)}%) are holding back massive growth. You're working hard, but not strategically. A focused, professional brand strategy will move you from *doing work* to *attracting premium clients*.`;
+                waMessageText = `Hi Brand Coach, I just completed the Brand Audit and scored ${score}%. I realize my ${weakestCategory} needs strategic refinement. I'm ready to invest in the KES 10,000 consultation to accelerate my growth, and would like to request the available payment details (e.g., M-Pesa, Bank details) to confirm my booking. Thank you!`;
+                weakness = `⚠️ **Your Weakest Area is: ${weakestCategory}** (Score: ${minPercentage.toFixed(0)}%). This needs your focus.`;
+                consultationBlock.classList.add('bg-yellow-700');
+            } else {
+                title = "Strong Foundation, Ready to Scale";
+                icon = "trophy";
+                iconColor = "text-green-600";
+                message = "Excellent work! Your brand is robust and consistent. Now we move from maintenance to *optimization*. A consultation will focus on advanced strategies like A/B testing, refining your unique selling proposition (USP), and scaling content for global reach.";
+                waMessageText = `Hi Brand Coach, I just completed the Brand Audit and scored ${score}%. I have a strong foundation but need expert help to optimize and scale my brand. I'd like to book the KES 10,000 consultation and would like to request the available payment details (e.g., M-Pesa, Bank details) to confirm my booking. Thank you!`;
+                consultationBlock.classList.add('bg-trouve-teal');
+                weakness = "";
+            }
+
+            // Update DOM
+            scoreDisplay.textContent = `${score}%`;
+            modalTitleEl.textContent = title;
+            feedbackEl.textContent = message;
+            whatsappButtonEl.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waMessageText)}`;
+            
+            // Update icon
+            modalIconContainer.innerHTML = `<i id="modalIcon" data-lucide="${icon}" class="w-12 h-12 ${iconColor} mx-auto mb-4"></i>`;
+            
+            // Weakness hint visibility
+            if (weakness) {
+                weaknessHintEl.innerHTML = weakness;
+                weaknessHintEl.classList.remove('hidden');
+            } else {
+                weaknessHintEl.classList.add('hidden');
+            }
+        }
+
+        function closeModal(event) {
+            // Close only if the user clicks the dark overlay, not the content inside
+            if (event.target.id === 'resultModal') {
+                document.getElementById('resultModal').classList.add('hidden');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('errorToast');
+            const span = toast.querySelector('span');
+            span.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            generateQuestionSlides();
+            // Start at the first question with no fade duration on load
+            showQuestion(0, 0); 
+        });
+    </script>
+</body>
+</html>
