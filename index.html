@@ -355,7 +355,17 @@
                         <label for="message" class="block text-sm font-medium text-teal-300 mb-1" id="c-goal-label" data-en="Your Goal" data-sw="Lengo Lako">Your Goal</label>
                         <textarea id="message" name="message" rows="4" placeholder="I need to automate content creation and reduce ad spend..." class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-orange-500 focus:border-orange-500" required></textarea>
                     </div>
-                    <button type="submit" href="audit.html" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-full shadow-lg text-gray-900 bg-teal-400 hover:bg-teal-500 transition duration-300 hover:scale-[1.01]" id="c-button" data-en="Send Strategy Request" data-sw="Tuma Ombi la Mkakati">Send Strategy Request</button>
+                    <button
+            id="whatsappButton"
+            onclick="sendWhatsAppMessage()"
+            class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white whatsapp-bg shadow-lg hover:shadow-xl transform hover:scale-[1.01] transition duration-200 ease-in-out focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
+        >
+            <!-- WhatsApp Icon (Inline SVG) -->
+            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.001 0C6.185 0 1.25 4.935 1.25 10.75c0 1.934.526 3.755 1.442 5.344L1.25 24l7.104-1.896c1.472.822 3.14 1.306 4.417 1.306 5.815 0 10.75-4.935 10.75-10.75S17.816 0 12.001 0zm4.276 15.346c-.224.618-1.397 1.218-1.928 1.293-.42.06-1.157.06-1.93-.418-.871-.535-2.203-1.34-3.79-3.097-1.423-1.571-2.383-3.159-2.673-3.791-.29-.632.222-1.127.618-1.536.368-.38.777-.905 1.137-.905.158 0 .285.01.42.016.326.01.564.09.776.577.214.483.743 1.802.798 1.93.054.128.09.285 0 .443-.09.157-.225.267-.326.38-.10.114-.216.236-.33.35-.11.115-.224.236-.26.273-.038.038-.073.06-.036.14.037.078.14.26.31.42.17.16.353.284.508.385.154.102.324.16.48.204.156.043.435.038.585-.015.15-.054.914-.374 1.07-.435.157-.06.27-.08.508-.12.238-.04.614-.04 1.002.09.39.128 1.144.64 1.312.748.17.107.284.157.497.242.21.084.58.204.818.29.39.157.632.274.722.427.09.15.09.923-.966 1.487z"/>
+            </svg>
+            Send via WhatsApp
+        </button>
                 </form>
             </div>
         </div>
