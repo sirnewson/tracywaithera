@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracy Waithera - AI-Powered Marketing Consultant</title>
+    <title id="pageTitle">Tracy Waithera - AI Marketing & Personal Branding</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,27 +12,32 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: #f7f9fb; /* Mchanga laini */
         }
-        /* Custom gradient for text and elements */
         .gradient-text {
-            background: linear-gradient(90deg, #F97316, #0D9488);
+            background: linear-gradient(90deg, #F97316, #0D9488); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Subtle glow effect for CTAs */
         .cta-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.15), transparent 70%);
+            box-shadow: 0 0 20px rgba(13, 148, 136, 0.5);
+            transition: all 0.3s ease;
         }
-        /* Background pattern for the hero section */
-        .pattern-bg {
-             background-image:
-                radial-gradient(circle at 10px 10px, rgba(249, 115, 22, 0.05) 10%, transparent 11%),
-                radial-gradient(circle at 10px 10px, rgba(13, 148, 136, 0.05) 10%, transparent 11%);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
+        .cta-glow:hover {
+            box-shadow: 0 0 30px rgba(13, 148, 136, 0.7);
         }
-        /* Scroll animation for content sections */
+        /* Muundo wa kadi ya Trouve Agency */
+        .trouve-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform: translateY(0);
+        }
+        .trouve-card:hover {
+            border-color: #0D9488; /* Teal border on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+            transform: translateY(-5px) scale(1.02);
+        }
         .scroll-target {
             opacity: 0;
             transform: translateY(30px);
@@ -42,274 +47,272 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Keyframe for subtle background glow/movement in hero */
-        @keyframes blob {
-          0% { transform: translate(0, 0) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0, 0) scale(1); }
+        /* Elegance for the Hero Section Image */
+        .hero-img {
+            max-height: 550px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 3rem; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            filter: grayscale(10%);
+            transition: all 0.5s ease;
         }
-        .animate-blob {
-          animation: blob 7s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+        .hero-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.01);
         }
-        .animation-delay-2000 { animation-delay: 2s; }
+        /* Animation for the main hero text */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInDown {
+            animation: fadeInDown 1s ease-out;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header / Navigation Bar - Site Identity is prominent here -->
-    <header class="bg-gray-900 sticky top-0 z-50 shadow-xl">
+    <!-- Header / Navigation Bar with Language Switch -->
+    <header class="bg-white sticky top-0 z-50 shadow-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
                     <a href="#" class="text-3xl font-extrabold gradient-text tracking-wider">Tracy Waithera</a>
                 </div>
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#services" class="text-white hover:text-teal-400 font-medium transition duration-150">Services</a>
-                    <a href="#about" class="text-white hover:text-teal-400 font-medium transition duration-150">About</a>
-                    <a href="#testimonials" class="text-white hover:text-teal-400 font-medium transition duration-150">Testimonials</a>
-                    <a href="#contact" class="px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition duration-150 shadow-md">Get a Quote</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-150" data-en="Services" data-sw="Huduma">Services</a>
+                    <a href="#trouve" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-150" data-en="Trouve Agency" data-sw="Shirika la Trouve">Trouve Agency</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition duration-150" data-en="About" data-sw="Kuhusu Mimi">About</a>
+                    <a href="#contact" class="px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition duration-150 shadow-lg" data-en="Get a Quote" data-sw="Omba Bei">Get a Quote</a>
+                    
+                    <!-- Language Switcher -->
+                    <button id="lang-switch" class="px-3 py-1 border border-gray-300 text-sm rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
+                        Swahili
+                    </button>
                 </nav>
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                <div class="md:hidden flex items-center space-x-3">
+                     <button id="lang-switch-mobile" class="px-3 py-1 border border-gray-300 text-sm rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
+                        Swahili
+                    </button>
+                    <button id="mobile-menu-button" class="text-gray-700 p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu Content -->
-        <nav id="mobile-menu" class="md:hidden hidden bg-gray-800 pb-3">
+        <nav id="mobile-menu" class="md:hidden hidden bg-white pb-3 shadow-inner">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Services</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">About</a>
-                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimonials</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-teal-600 bg-teal-500 mt-2">Get a Quote</a>
+                <a href="#services" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-en="Services" data-sw="Huduma">Services</a>
+                <a href="#trouve" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-en="Trouve Agency" data-sw="Shirika la Trouve">Trouve Agency</a>
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100" data-en="About" data-sw="Kuhusu Mimi">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-orange-500 mt-2 hover:bg-orange-600" data-en="Get a Quote" data-sw="Omba Bei">Get a Quote</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section - Main Banner -->
-    <section id="hero" class="relative overflow-hidden bg-gray-900 py-24 sm:py-32 lg:py-40 pattern-bg cta-glow">
-        <!-- Background elements (dots/glow) -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-            <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        </div>
-
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <!-- New Identity Section in Hero Banner -->
-            <div class="scroll-target visible mb-16 p-6 border-4 border-dashed border-orange-400/50 bg-gray-800/80 backdrop-blur-sm rounded-3xl shadow-2xl">
-                <h2 class="text-4xl sm:text-5xl font-black text-white">
-                    Official Site of <span class="gradient-text">Tracy Waithera</span>
-                </h2>
-                <p class="mt-2 text-xl text-teal-300">Your Premier AI Marketing Strategist.</p>
+    <!-- Hero Section - Immersive and Modern -->
+    <section id="hero" class="relative overflow-hidden bg-gray-900 py-24 sm:py-32 lg:py-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
+                <div class="text-white">
+                    <p class="text-teal-400 text-lg font-semibold uppercase tracking-widest animate-fadeInDown" data-en="AI STRATEGY & PERSONAL BRANDING" data-sw="MKAKATI WA AI & UTAJIRI BINAFSI">AI STRATEGY & PERSONAL BRANDING</p>
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mt-4 leading-tight animate-fadeInDown animation-delay-300">
+                        <span id="hero-title-1" data-en="Amplify Your Influence" data-sw="Kuza Ushawishi Wako">Amplify Your Influence</span> <span class="gradient-text" id="hero-title-2" data-en="with Smart Tech" data-sw="kwa Teknolojia Bora">with Smart Tech</span>
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-300 max-w-lg scroll-target" id="hero-subtitle" data-en="I help visionaries like you leverage ethical AI and strategic marketing to build unstoppable personal brands and drive measurable business growth." data-sw="Nawasaidia watu wenye maono kama wewe kutumia AI na masoko ya kimkakati kujenga majina makubwa na kuleta ukuaji wa biashara unaopimika.">I help visionaries like you leverage ethical AI and strategic marketing to build unstoppable personal brands and drive measurable business growth.</p>
+                    
+                    <div class="mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 scroll-target">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-full shadow-lg text-gray-900 bg-orange-400 hover:bg-orange-500 cta-glow" id="cta-audit" data-en="Start Your Brand Audit" data-sw="Anza Ukaguzi wa Jina Lako">Start Your Brand Audit</a>
+                        <a href="#trouve" class="inline-flex items-center justify-center px-8 py-4 border-2 border-teal-500 text-lg font-medium rounded-full text-white hover:bg-teal-700 transition duration-300" id="cta-agency" data-en="Explore Trouve Agency" data-sw="Angalia Shirika la Trouve">Explore Trouve Agency</a>
+                    </div>
+                </div>
+                
+                <!-- Image Container (Modern Design) -->
+                <div class="relative mt-12 lg:mt-0 flex justify-center scroll-target">
+                    <img src="https://static.wixstatic.com/media/eb5f69_8baaff83467140aea71ce6f922d754d7~mv2.png/v1/fill/w_437,h_582,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/2.png" 
+                         alt="Tracy Waithera Professional Profile" 
+                         class="hero-img"
+                         onerror="this.onerror=null; this.src='https://placehold.co/437x582/0D9488/ffffff?text=Tracy+Waithera'"
+                    >
+                </div>
             </div>
-            <!-- End Identity Section -->
+        </div>
+    </section>
 
-            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-tight scroll-target">
-                Scale Your Brand with <span class="gradient-text">Intelligent AI Strategy</span>
-            </h1>
-            <p class="mt-6 text-xl text-teal-300 max-w-3xl mx-auto scroll-target">
-                Leverage cutting-edge AI tools and data science to transform your marketing efforts into predictable revenue growth.
-            </p>
-            <div class="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 scroll-target">
-                <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-full shadow-lg text-gray-900 bg-orange-400 hover:bg-orange-500 transition duration-300 transform hover:scale-105">
-                    Start Your AI Audit
-                </a>
-                <a href="#services" class="inline-flex items-center justify-center px-8 py-4 border-2 border-teal-500 text-lg font-medium rounded-full text-white hover:bg-teal-700 transition duration-300 transform hover:scale-105">
-                    Explore Services
-                </a>
+    <!-- Section for Trouve Marketing Solutions (New) -->
+    <section id="trouve" class="py-24 sm:py-36 bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4 scroll-target">
+                <span id="trouve-title-1" data-en="Trouve" data-sw="Shirika la Trouve">Trouve</span> <span class="gradient-text" id="trouve-title-2" data-en="Marketing Solutions" data-sw="Mifumo ya Masoko">Marketing Solutions</span>
+            </h2>
+            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16 scroll-target" id="trouve-subtitle" data-en="A full-service digital agency driving results through strategy, content, and tech insight." data-sw="Shirika kamili la dijitali linaloleta matokeo kupitia mkakati, maudhui, na ufahamu wa teknolojia.">A full-service digital agency driving results through strategy, content, and tech insight.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Personal Branding -->
+                <div class="trouve-card p-8 rounded-xl shadow-lg scroll-target">
+                    <i data-lucide="user-check" class="w-10 h-10 text-teal-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3" id="t-card-1-title" data-en="Personal Branding" data-sw="Kujenga Jina Binafsi">Personal Branding</h3>
+                    <p class="text-gray-600" id="t-card-1-desc" data-en="We specialize in helping individuals build and establish their personal brands. Our strategic guidance empowers individuals to create a strong and authentic online presence." data-sw="Tunasaidia watu kujenga na kuanzisha majina yao binafsi. Mwongozo wetu unawawezesha kuunda utambulisho wa mtandaoni ulio na nguvu na wa kweli.">We specialize in helping individuals build and establish their personal brands. Our strategic guidance empowers individuals to create a strong and authentic online presence.</p>
+                </div>
+
+                <!-- Card 2: Digital Marketing Campaigns -->
+                <div class="trouve-card p-8 rounded-xl shadow-lg scroll-target">
+                    <i data-lucide="send" class="w-10 h-10 text-orange-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3" id="t-card-2-title" data-en="Digital Marketing Campaigns" data-sw="Kampeni za Masoko ya Dijitali">Digital Marketing Campaigns</h3>
+                    <p class="text-gray-600" id="t-card-2-desc" data-en="Our team excels in crafting compelling and engaging content tailored to resonate with your target audience. We ensure your campaigns effectively convey your brand's message." data-sw="Timu yetu inajenga maudhui mazuri yanayolenga watazamaji wako. Tunahakikisha kampeni zako zinawasilisha ujumbe wa biashara yako kwa ufanisi.">Our team excels in crafting compelling and engaging content tailored to resonate with your target audience. We ensure your campaigns effectively convey your brand's message.</p>
+                </div>
+
+                <!-- Card 3: Brand Awareness and Sales -->
+                <div class="trouve-card p-8 rounded-xl shadow-lg scroll-target">
+                    <i data-lucide="trending-up" class="w-10 h-10 text-teal-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3" id="t-card-3-title" data-en="Brand Awareness & Sales" data-sw="Utambulisho wa Jina & Mauzo">Brand Awareness & Sales</h3>
+                    <p class="text-gray-600" id="t-card-3-desc" data-en="We leverage targeted advertising strategies to enhance brand awareness and drive sales for our clients. Our expertise maximizes the impact of your marketing efforts." data-sw="Tunatumia mikakati ya matangazo kulenga wateja, kukuza utambulisho wa jina na kuongeza mauzo. Ujuzi wetu huongeza athari ya masoko yako.">We leverage targeted advertising strategies to enhance brand awareness and drive sales for our clients. Our expertise maximizes the impact of your marketing efforts.</p>
+                </div>
+
+                <!-- Card 4: Tech Insights & Trends -->
+                <div class="trouve-card p-8 rounded-xl shadow-lg scroll-target md:col-span-1 lg:col-span-1">
+                    <i data-lucide="monitor-dot" class="w-10 h-10 text-orange-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3" id="t-card-4-title" data-en="Tech Insights & Trends" data-sw="Ufahamu wa Teknolojia & Mitindo">Tech Insights & Trends</h3>
+                    <p class="text-gray-600" id="t-card-4-desc" data-en="We provide the latest tech news, digital trends, and free educational resources to keep our clients informed and equipped with the knowledge needed to thrive in the digital realm." data-sw="Tunatoa habari za hivi punde za teknolojia, mitindo ya dijitali, na rasilimali za bure za elimu ili kuwapa wateja wetu ujuzi wa kufaulu katika ulimwengu wa dijitali.">We provide the latest tech news, digital trends, and free educational resources to keep our clients informed and equipped with the knowledge needed to thrive in the digital realm.</p>
+                </div>
+
+                <!-- Card 5: Educational Workshops -->
+                <div class="trouve-card p-8 rounded-xl shadow-lg scroll-target md:col-span-1 lg:col-span-2">
+                    <i data-lucide="graduation-cap" class="w-10 h-10 text-teal-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-3" id="t-card-5-title" data-en="Educational Workshops" data-sw="Warsha za Kielimu">Educational Workshops</h3>
+                    <p class="text-gray-600" id="t-card-5-desc" data-en="Our interactive workshops are designed to equip businesses and brands with the knowledge and skills necessary for successful digital marketing campaigns. We believe in empowering our clients through insightful and practical training." data-sw="Warsha zetu shirikishi zimeundwa kuwapa biashara na chapa ujuzi unaohitajika kwa kampeni za masoko ya dijitali zilizofaulu. Tunaamini katika kuwawezesha wateja wetu kupitia mafunzo yenye vitendo.">Our interactive workshops are designed to equip businesses and brands with the knowledge and skills necessary for successful digital marketing campaigns. We believe in empowering our clients through insightful and practical training.</p>
+                </div>
             </div>
             
-            <!-- Subtle navigation element -->
-            <div class="mt-16 text-teal-400 text-sm flex justify-center space-x-6 scroll-target">
-                <p class="hidden md:block font-semibold uppercase tracking-wider">In This Section:</p>
-                <a href="#services" class="hover:text-white transition duration-150 flex items-center">
-                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1"></i> Services
-                </a>
-                <a href="#about" class="hover:text-white transition duration-150 flex items-center">
-                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1"></i> About
-                </a>
-                <a href="#testimonials" class="hover:text-white transition duration-150 flex items-center">
-                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1"></i> Testimonials
-                </a>
+            <div class="text-center mt-16 scroll-target">
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-full text-white bg-teal-600 hover:bg-teal-700 cta-glow" id="cta-learn-more" data-en="Partner with Trouve" data-sw="Shirikianana na Trouve">Partner with Trouve</a>
             </div>
         </div>
     </section>
-    
-    <!-- MID-SECTION AD 1: Pushing Content -->
-    <section class="ad-section bg-yellow-50 border-y border-yellow-300 py-10 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold text-yellow-800 mb-3">📈 Exclusive Offer: FREE AI Tool Stack Review!</h3>
-            <p class="text-yellow-700 max-w-3xl mx-auto">
-                Discover the gaps in your current marketing tech. Sign up now and receive a personalized recommendation report (a $499 value). Limited slots available!
-            </p>
-            <a href="#contact" class="mt-4 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-yellow-600 hover:bg-yellow-700 transition duration-300 transform hover:translate-y-0.5">
-                Claim Your Free Review
-            </a>
-        </div>
-    </section>
 
-    <!-- Services Section (Enhanced Spacing and Card Style) -->
+    <!-- Services Section -->
     <section id="services" class="py-24 sm:py-36 bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4 scroll-target">AI Marketing <span class="gradient-text">Services</span></h2>
-            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16 scroll-target">
-                We design and implement custom AI models and automation workflows that deliver measurable results and sustainable competitive advantage.
-            </p>
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-4 scroll-target">
+                <span id="serv-title-1" data-en="AI Marketing" data-sw="Huduma za AI">AI Marketing</span> <span class="gradient-text" id="serv-title-2" data-en="Consultancy" data-sw="na Ushauri">Consultancy</span>
+            </h2>
+            <p class="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-16 scroll-target" id="serv-subtitle" data-en="We design and implement custom AI models and automation workflows that deliver measurable results." data-sw="Tunabuni na kutekeleza mifumo maalum ya AI na automatisering inayoleta matokeo yanayopimika.">We design and implement custom AI models and automation workflows that deliver measurable results.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <!-- Service 1 -->
-                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-xl hover:shadow-2xl transition duration-300 scroll-target">
+                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-lg hover:shadow-xl transition duration-300 scroll-target hover:border-orange-500">
                     <i data-lucide="brain-circuit" class="w-12 h-12 text-teal-600 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3">Predictive Modeling</h3>
-                    <p class="text-gray-600">
-                        Forecast customer behavior, optimize pricing, and predict churn using advanced machine learning algorithms.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-3" id="serv-1-title" data-en="Predictive Modeling" data-sw="Uchambuzi wa Kutabiri">Predictive Modeling</h3>
+                    <p class="text-gray-600" id="serv-1-desc" data-en="Forecast customer behavior and optimize strategy using advanced machine learning algorithms." data-sw="Tabiri tabia ya wateja na boresha mkakati kwa kutumia algoriti za kisasa za machine learning.">Forecast customer behavior and optimize strategy using advanced machine learning algorithms.</p>
                 </div>
 
                 <!-- Service 2 -->
-                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-xl hover:shadow-2xl transition duration-300 scroll-target">
+                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-lg hover:shadow-xl transition duration-300 scroll-target hover:border-orange-500">
                     <i data-lucide="robot" class="w-12 h-12 text-teal-600 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3">Content Automation</h3>
-                    <p class="text-gray-600">
-                        Generate high-quality, personalized content at scale for email, social media, and paid ads with LLMs.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-3" id="serv-2-title" data-en="Content Automation" data-sw="Kuunda Maudhui Kiotomatiki">Content Automation</h3>
+                    <p class="text-gray-600" id="serv-2-desc" data-en="Generate high-quality, personalized content at scale for email, social media, and paid ads with LLMs." data-sw="Tengeneza maudhui ya hali ya juu, yanayomlenga mtu binafsi, kwa wingi kwa kutumia LLMs.">Generate high-quality, personalized content at scale for email, social media, and paid ads with LLMs.</p>
                 </div>
 
                 <!-- Service 3 -->
-                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-xl hover:shadow-2xl transition duration-300 scroll-target">
+                <div class="p-10 bg-gray-50 border border-gray-200 rounded-[2rem] shadow-lg hover:shadow-xl transition duration-300 scroll-target hover:border-orange-500">
                     <i data-lucide="trending-up" class="w-12 h-12 text-teal-600 mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3">Optimized Ad Spend</h3>
-                    <p class="text-gray-600">
-                        Dynamically adjust ad budgets and targeting in real-time based on ROI predictions and campaign performance.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-3" id="serv-3-title" data-en="Optimized Ad Spend" data-sw="Kutumia Pesa za Matangazo Vizuri">Optimized Ad Spend</h3>
+                    <p class="text-gray-600" id="serv-3-desc" data-en="Dynamically adjust ad budgets and targeting in real-time based on ROI predictions and campaign performance." data-sw="Rekebisha bajeti za matangazo na walengwa kwa wakati halisi kulingana na utabiri wa faida.">Dynamically adjust ad budgets and targeting in real-time based on ROI predictions and campaign performance.</p>
                 </div>
             </div>
         </div>
-        <!-- Clean Visual Divider -->
         <div class="max-w-4xl mx-auto mt-20 h-px bg-gray-200"></div>
     </section>
 
-    <!-- MID-SECTION AD 2: Pushing Content -->
-    <section class="ad-section bg-red-50 border-y border-red-300 py-10 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold text-red-800 mb-3">⚠️ Urgency Alert: Is Your Competitor Using AI?</h3>
-            <p class="text-red-700 max-w-3xl mx-auto">
-                Don't get left behind. We offer a rapid 7-day implementation plan to get your core AI marketing functions operational immediately.
-            </p>
-            <a href="#contact" class="mt-4 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-red-600 hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                See Rapid Launch Plan
-            </a>
-        </div>
-    </section>
-
-    <!-- About Section (Enhanced Spacing) -->
+    <!-- About Section -->
     <section id="about" class="py-24 sm:py-36 bg-gray-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="scroll-target">
-                    <h2 class="text-4xl sm:text-5xl font-extrabold mb-6"><span class="gradient-text">Tracy's</span> Vision</h2>
-                    <p class="mt-4 text-lg text-gray-700 leading-relaxed">
-                        Tracy Waithera is not just a consultant; she's a pioneer at the intersection of marketing and artificial intelligence. With a background in data science and a passion for ethical, high-impact growth, Tracy founded this practice to bridge the gap between complex AI technology and practical business results.
-                    </p>
-                    <p class="mt-4 text-lg text-gray-700 leading-relaxed">
-                        Her philosophy is simple: **AI should amplify human creativity, not replace it.** We focus on creating hyper-efficient, personalized customer journeys that feel authentic, driving both short-term conversions and long-term loyalty.
-                    </p>
-                    <div class="mt-8">
-                        <span class="inline-flex items-center text-teal-600 font-medium mr-4">
-                            <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i> Data-Driven Decisions
-                        </span>
-                        <span class="inline-flex items-center text-teal-600 font-medium">
-                            <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i> Ethical AI Use
-                        </span>
+                <div class="relative scroll-target order-2 lg:order-1">
+                    <!-- Picha ya Tracy Waithera -->
+                    <img 
+                        src="https://i.ibb.co/yBhfSCtM/485354217-979316224291637-7305403550176562456-n-1.jpg" 
+                        alt="Tracy Waithera Headshot" 
+                        class="rounded-full shadow-2xl w-80 h-80 object-cover mx-auto lg:mx-0 transform hover:scale-[1.02] transition duration-500 border-4 border-teal-500"
+                        onerror="this.onerror=null; this.src='https://placehold.co/320x320/0D9488/ffffff?text=Picha+ya+Tracy'"
+                    >
+                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-500 p-4 rounded-full shadow-xl">
+                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
                     </div>
                 </div>
-                <div class="relative scroll-target">
-                    <img src="https://placehold.co/600x400/0D9488/ffffff?text=Professional+Headshot" alt="Tracy Waithera Headshot" class="rounded-3xl shadow-2xl w-full h-auto object-cover transform hover:scale-[1.02] transition duration-500">
-                    <div class="absolute -bottom-8 -left-8 bg-orange-400 p-4 rounded-full shadow-xl">
-                        <i data-lucide="award" class="w-8 h-8 text-white"></i>
+                <div class="scroll-target order-1 lg:order-2">
+                    <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">
+                        <span class="gradient-text" id="about-title-1" data-en="Tracy's" data-sw="Maono ya">Tracy's</span> <span id="about-title-2" data-en="Vision" data-sw="Tracy">Vision</span>
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-700 leading-relaxed" id="about-p1" data-en="Tracy Waithera is a pioneer at the intersection of marketing and artificial intelligence. With a background in data science and a passion for ethical, high-impact growth, Tracy founded this practice to bridge the gap between complex AI technology and practical business results." data-sw="Tracy Waithera ni kinara katika makutano ya masoko na akili bandia. Akiwa na ujuzi wa sayansi ya data na shauku ya ukuaji wa kimaadili, Tracy alianzisha huduma hii ili kuunganisha teknolojia ngumu ya AI na matokeo ya biashara yanayofaa.">Tracy Waithera is a pioneer at the intersection of marketing and artificial intelligence. With a background in data science and a passion for ethical, high-impact growth, Tracy founded this practice to bridge the gap between complex AI technology and practical business results.</p>
+                    <p class="mt-4 text-lg text-gray-700 leading-relaxed" id="about-p2" data-en="Her philosophy is simple: AI should amplify human creativity, not replace it. We focus on creating hyper-efficient, personalized customer journeys that feel authentic, driving both short-term conversions and long-term loyalty." data-sw="Falsafa yake ni rahisi: AI inapaswa kukuza ubunifu wa binadamu, sio kuubadilisha. Tunazingatia kuunda safari za wateja zilizobinafsishwa na zenye ufanisi mkuu, ambazo zinaleta uaminifu wa muda mrefu.">Her philosophy is simple: AI should amplify human creativity, not replace it. We focus on creating hyper-efficient, personalized customer journeys that feel authentic, driving both short-term conversions and long-term loyalty.</p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <span class="inline-flex items-center text-teal-600 font-medium p-2 bg-teal-100 rounded-full">
+                            <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i> <span id="about-check-1" data-en="Data-Driven Decisions" data-sw="Maamuzi Yanayotegemea Data">Data-Driven Decisions</span>
+                        </span>
+                        <span class="inline-flex items-center text-teal-600 font-medium p-2 bg-teal-100 rounded-full">
+                            <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i> <span id="about-check-2" data-en="Ethical AI Use" data-sw="Matumizi ya AI yenye Maadili">Ethical AI Use</span>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MID-SECTION AD 3: Pushing Content -->
-    <section class="ad-section bg-blue-50 border-y border-blue-300 py-10 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold text-blue-800 mb-3">💡 Case Study: See the $1.2M Revenue Increase</h3>
-            <p class="text-blue-700 max-w-3xl mx-auto">
-                Download our latest case study detailing how a SaaS client achieved $1.2M in annual recurring revenue (ARR) using our predictive segmentation model.
-            </p>
-            <a href="#" class="mt-4 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                Read the Full Report
-            </a>
-        </div>
-    </section>
-
-    <!-- Testimonials Section (Enhanced Spacing and Card Style) -->
-    <section id="testimonials" class="py-24 sm:py-36 bg-white border-b border-gray-100">
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 sm:py-36 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 scroll-target">What Clients Are <span class="gradient-text">Saying</span></h2>
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16 scroll-target">
+                <span id="test-title-1" data-en="What Clients" data-sw="Wateja Wanasema">What Clients</span> <span class="gradient-text" id="test-title-2" data-en="Are Saying" data-sw="Nini">Are Saying</span>
+            </h2>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <!-- Testimonial 1 -->
                 <div class="p-8 bg-white border border-gray-100 border-t-4 border-teal-500 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 scroll-target">
                     <i data-lucide="quote" class="w-8 h-8 text-teal-400 mb-4"></i>
-                    <p class="text-lg italic text-gray-700">"Tracy's AI strategy transformed our ad performance. We saw a 4x increase in lead quality within the first quarter. Truly game-changing expertise."</p>
+                    <p class="text-lg italic text-gray-700" id="test-1-quote" data-en="&quot;Tracy's AI strategy transformed our ad performance. We saw a great increase in lead quality within the first quarter. Truly game-changing expertise.&quot;" data-sw="&quot;Mkakati wa AI wa Tracy ulibadilisha utendaji wa matangazo yetu. Tuliona ubora wa wateja ukiongezeka sana ndani ya robo ya kwanza. Ujuzi wa ajabu kabisa!&quot;">"Tracy's AI strategy transformed our ad performance. We saw a great increase in lead quality within the first quarter. Truly game-changing expertise."</p>
                     <div class="mt-6 pt-4 border-t border-gray-200">
                         <p class="font-bold text-gray-900">Alex J.</p>
-                        <p class="text-sm text-gray-500">CMO, TechSpark Solutions</p>
+                        <p class="text-sm text-gray-500" id="test-1-role" data-en="CMO, TechSpark Solutions" data-sw="Mkuu wa Masoko, TechSpark Solutions">CMO, TechSpark Solutions</p>
                     </div>
                 </div>
 
                 <!-- Testimonial 2 -->
                 <div class="p-8 bg-white border border-gray-100 border-t-4 border-orange-500 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 scroll-target">
                     <i data-lucide="quote" class="w-8 h-8 text-orange-400 mb-4"></i>
-                    <p class="text-lg italic text-gray-700">"The content automation system they built is flawless. We went from manually writing 20 emails a week to generating 200 personalized messages instantly."</p>
+                    <p class="text-lg italic text-gray-700" id="test-2-quote" data-en="&quot;The content automation system they built is flawless. We went from manually writing a few emails a week to generating personalized messages instantly.&quot;" data-sw="&quot;Mfumo wa automatisering ya maudhui waliojenga hauna kasoro. Tulitoka kuandika barua pepe chache kwa mikono hadi kuunda ujumbe binafsi mara moja.&quot;">"The content automation system they built is flawless. We went from manually writing a few emails a week to generating personalized messages instantly."</p>
                     <div class="mt-6 pt-4 border-t border-gray-200">
                         <p class="font-bold text-gray-900">Maria P.</p>
-                        <p class="text-sm text-gray-500">Head of Content, GrowthHive</p>
+                        <p class="text-sm text-gray-500" id="test-2-role" data-en="Head of Content, GrowthHive" data-sw="Kiongozi wa Maudhui, GrowthHive">Head of Content, GrowthHive</p>
                     </div>
                 </div>
 
                 <!-- Testimonial 3 -->
                 <div class="p-8 bg-white border border-gray-100 border-t-4 border-teal-500 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 scroll-target">
                     <i data-lucide="quote" class="w-8 h-8 text-teal-400 mb-4"></i>
-                    <p class="text-lg italic text-gray-700">"Reliable, data-focused, and delivers exactly what is promised. If you want results, you need Tracy Waithera on your side."</p>
+                    <p class="text-lg italic text-gray-700" id="test-3-quote" data-en="&quot;Reliable, data-focused, and delivers exactly what is promised. If you want results, you need Tracy Waithera on your side.&quot;" data-sw="&quot;Anaaminika, anazingatia data, na anatimiza ahadi zake. Kama unataka matokeo, unamhitaji Tracy Waithera upande wako.&quot;">"Reliable, data-focused, and delivers exactly what is promised. If you want results, you need Tracy Waithera on your side."</p>
                     <div class="mt-6 pt-4 border-t border-gray-200">
                         <p class="font-bold text-gray-900">David K.</p>
-                        <p class="text-sm text-gray-500">Founder, E-commerce Innovators</p>
+                        <p class="text-sm text-gray-500" id="test-3-role" data-en="Founder, E-commerce Innovators" data-sw="Mwanzilishi, E-commerce Innovators">Founder, E-commerce Innovators</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- MID-SECTION AD 4: Pushing Content -->
-    <section class="ad-section bg-indigo-50 border-y border-indigo-300 py-10 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold text-indigo-800 mb-3">🚀 Final Call: Reserve Your AI Strategy Session!</h3>
-            <p class="text-indigo-700 max-w-3xl mx-auto">
-                Book a 30-minute consultation directly with Tracy to outline a custom AI implementation roadmap for your business. Don't wait, slots fill up fast!
-            </p>
-            <a href="#contact" class="mt-4 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
-                Book Consultation Now
-            </a>
-        </div>
-    </section>
 
-    <!-- Contact Section (Enhanced Spacing) -->
-    <section id="contact" class="py-24 sm:py-36 bg-gray-900 text-white cta-glow">
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 sm:py-36 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-target">
-                <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">Ready to <span class="gradient-text">Scale?</span></h2>
-                <p class="text-xl text-teal-300 max-w-3xl mx-auto">
-                    Let's discuss how customized AI solutions can drive your next phase of growth.
-                </p>
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">
+                    <span id="contact-title-1" data-en="Ready to" data-sw="Uko Tayari">Ready to</span> <span class="gradient-text" id="contact-title-2" data-en="Scale?" data-sw="Kukua?">Scale?</span>
+                </h2>
+                <p class="text-xl text-teal-300 max-w-3xl mx-auto" id="contact-subtitle" data-en="Let's discuss how customized AI solutions can drive your next phase of growth." data-sw="Tujadili jinsi suluhisho maalum za AI zinavyoweza kuendesha awamu yako inayofuata ya ukuaji.">Let's discuss how customized AI solutions can drive your next phase of growth.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -318,22 +321,22 @@
                     <div class="flex items-start">
                         <i data-lucide="mail" class="w-6 h-6 text-orange-400 flex-shrink-0 mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold">Email</h3>
-                            <p class="text-teal-300">strategy@tracywaithera.com</p>
+                            <h3 class="text-xl font-semibold" id="c-email-title" data-en="Email" data-sw="Barua Pepe">Email</h3>
+                            <p class="text-teal-300">tracywaithera18@gmail.com</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <i data-lucide="phone" class="w-6 h-6 text-orange-400 flex-shrink-0 mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold">Phone</h3>
-                            <p class="text-teal-300">+1 (555) 123-4567</p>
+                            <h3 class="text-xl font-semibold" id="c-phone-title" data-en="Phone" data-sw="Simu">Phone</h3>
+                            <p class="text-teal-300">0702 476 038</p>
                         </div>
                     </div>
                     <div class="flex items-start">
                         <i data-lucide="map-pin" class="w-6 h-6 text-orange-400 flex-shrink-0 mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold">Location</h3>
-                            <p class="text-teal-300">Global Remote, CET Timezone</p>
+                            <h3 class="text-xl font-semibold" id="c-location-title" data-en="Location" data-sw="Mahali">Location</h3>
+                            <p class="text-teal-300" id="c-location-desc" data-en="Global Remote, EAT Timezone" data-sw="Kazi kwa Mtandao (Remote), Kanda ya Saa ya Afrika Mashariki">Global Remote, EAT Timezone</p>
                         </div>
                     </div>
                 </div>
@@ -341,20 +344,18 @@
                 <!-- Contact Form -->
                 <form class="space-y-6 bg-gray-800 p-8 rounded-2xl shadow-2xl scroll-target">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-teal-300 mb-1">Full Name</label>
+                        <label for="name" class="block text-sm font-medium text-teal-300 mb-1" id="c-name-label" data-en="Full Name" data-sw="Jina Kamili">Full Name</label>
                         <input type="text" id="name" name="name" placeholder="John Doe" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-orange-500 focus:border-orange-500" required>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-teal-300 mb-1">Work Email</label>
+                        <label for="email" class="block text-sm font-medium text-teal-300 mb-1" id="c-email-label" data-en="Work Email" data-sw="Barua Pepe ya Kazi">Work Email</label>
                         <input type="email" id="email" name="email" placeholder="john.doe@company.com" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-orange-500 focus:border-orange-500" required>
                     </div>
                     <div>
-                        <label for="message" class="block text-sm font-medium text-teal-300 mb-1">Your Goal</label>
+                        <label for="message" class="block text-sm font-medium text-teal-300 mb-1" id="c-goal-label" data-en="Your Goal" data-sw="Lengo Lako">Your Goal</label>
                         <textarea id="message" name="message" rows="4" placeholder="I need to automate content creation and reduce ad spend..." class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:ring-orange-500 focus:border-orange-500" required></textarea>
                     </div>
-                    <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-full shadow-lg text-gray-900 bg-teal-400 hover:bg-teal-500 transition duration-300 transform hover:scale-[1.01]">
-                        Send Strategy Request
-                    </button>
+                    <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-full shadow-lg text-gray-900 bg-teal-400 hover:bg-teal-500 transition duration-300 hover:scale-[1.01]" id="c-button" data-en="Send Strategy Request" data-sw="Tuma Ombi la Mkakati">Send Strategy Request</button>
                 </form>
             </div>
         </div>
@@ -365,43 +366,93 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
                 <div>
-                    <h4 class="text-xl font-semibold text-white mb-4">Quick Links</h4>
+                    <h4 class="text-xl font-semibold text-white mb-4" id="f-links-title" data-en="Quick Links" data-sw="Viungo vya Haraka">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#hero" class="text-teal-300 hover:text-white transition duration-150">Home</a></li>
-                        <li><a href="#services" class="text-teal-300 hover:text-white transition duration-150">Services</a></li>
-                        <li><a href="#about" class="text-teal-300 hover:text-white transition duration-150">About Me</a></li>
+                        <li><a href="#hero" class="text-teal-300 hover:text-white transition duration-150" data-en="Home" data-sw="Mwanzo">Home</a></li>
+                        <li><a href="#services" class="text-teal-300 hover:text-white transition duration-150" data-en="Services" data-sw="Huduma">Services</a></li>
+                        <li><a href="#about" class="text-teal-300 hover:text-white transition duration-150" data-en="About Me" data-sw="Kuhusu Mimi">About Me</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-semibold text-white mb-4">Resources</h4>
+                    <h4 class="text-xl font-semibold text-white mb-4" id="f-resources-title" data-en="Resources" data-sw="Vifaa Muhimu">Resources</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150">AI Blog</a></li>
-                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150">Case Studies</a></li>
-                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150">FAQs</a></li>
+                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150" data-en="AI Blog" data-sw="Blogu ya AI">AI Blog</a></li>
+                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150" data-en="Case Studies" data-sw="Uchunguzi wa Kesi">Case Studies</a></li>
+                        <li><a href="#" class="text-teal-300 hover:text-white transition duration-150" data-en="FAQs" data-sw="Maswali">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="col-span-2 md:col-span-1">
-                    <h4 class="text-xl font-semibold text-white mb-4">Contact</h4>
+                    <h4 class="text-xl font-semibold text-white mb-4" id="f-contact-title" data-en="Contact" data-sw="Mawasiliano">Contact</h4>
                     <ul class="space-y-2">
-                        <li><span class="text-teal-300">Email: strategy@tracywaithera.com</span></li>
-                        <li><span class="text-teal-300">Phone: +1 (555) 123-4567</span></li>
+                        <li><span class="text-teal-300">Email: tracywaithera18@gmail.com</span></li>
+                        <li><span class="text-teal-300">Simu: 0702 476 038</span></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 border-t border-teal-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-teal-300 text-sm">&copy; 2025 Tracy Waithera. All Rights Reserved.</p>
+                <p class="text-teal-300 text-sm" id="f-copyright" data-en="&copy; 2025 Tracy Waithera. All Rights Reserved." data-sw="&copy; 2025 Tracy Waithera. Haki Zote Zimehifadhiwa.">&copy; 2025 Tracy Waithera. All Rights Reserved.</p>
                 <div class="flex space-x-5 mt-6 sm:mt-0">
-                    <a href="#" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="twitter"></i></a>
-                    <a href="#" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="linkedin"></i></a>
-                    <a href="#" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="facebook"></i></a>
+                    <a href="https://twitter.com/tracywaithera" target="_blank" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="twitter"></i></a>
+                    <a href="https://linkedin.com/in/tracywaithera" target="_blank" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="linkedin"></i></a>
+                    <a href="https://facebook.com/tracywaithera" target="_blank" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="facebook"></i></a>
+                    <a href="https://instagram.com/tracywaithera" target="_blank" class="text-teal-300 hover:text-white transition duration-150"><i data-lucide="instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
+        
+        // --- LANGUAGE SWITCH LOGIC ---
+        const languageMap = {
+            'en': 'English',
+            'sw': 'Swahili'
+        };
+        let currentLang = 'en'; // Default language is English
+
+        function updateTexts(lang) {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const key = el.id || el.className.split(' ').find(c => c.includes('nav-link')) || 'pageTitle';
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    el.textContent = text;
+                    // Special case for input placeholders/attributes if needed (not needed for this structure)
+                }
+            });
+            
+            // Update static elements that aren't easily targetable by ID in the list
+            document.getElementById('pageTitle').textContent = lang === 'en' ? 'Tracy Waithera - AI Marketing & Personal Branding' : 'Tracy Waithera - Masoko ya AI & Utambulisho Binafsi';
+            
+            // Update button text
+            const langSwitchButton = document.getElementById('lang-switch');
+            const langSwitchButtonMobile = document.getElementById('lang-switch-mobile');
+            if (langSwitchButton) langSwitchButton.textContent = languageMap[lang === 'en' ? 'sw' : 'en'];
+            if (langSwitchButtonMobile) langSwitchButtonMobile.textContent = languageMap[lang === 'en' ? 'sw' : 'en'];
+            
+            document.documentElement.lang = lang;
+            currentLang = lang;
+        }
+
+        document.getElementById('lang-switch').addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'sw' : 'en';
+            updateTexts(newLang);
+        });
+        document.getElementById('lang-switch-mobile').addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'sw' : 'en';
+            updateTexts(newLang);
+        });
+        
+        // Initial setup for default language
+        window.onload = function() {
+            updateTexts('en'); // Start in English as the HTML default
+            lucide.createIcons(); 
+            // Activate scroll observer after page load
+            targets.forEach(target => { observer.observe(target); });
+        };
+
+
+        // --- UI & ANIMATION LOGIC ---
         
         // Mobile menu toggle logic
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -416,16 +467,14 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Stop observing once visible to prevent re-triggering
                     observer.unobserve(entry.target); 
                 }
             });
         }, { 
-            threshold: 0.1, // Trigger when 10% of the item is visible
-            rootMargin: '0px 0px -50px 0px' // Start triggering slightly earlier
+            threshold: 0.1, 
+            rootMargin: '0px 0px -50px 0px' 
         });
         
-        targets.forEach(target => { observer.observe(target); });
     </script>
 </body>
 </html>
