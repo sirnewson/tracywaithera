@@ -1,0 +1,7 @@
+{
+  "name": "Trouve Marketing Solutions - 2026 Growth Agency",
+  "description": "A high-end React application for Trouve Marketing Solutions, featuring AI-driven marketing insights, deep industry articles, and a premium 2026 visual design.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
