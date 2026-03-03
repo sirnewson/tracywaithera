@@ -31,7 +31,7 @@ export const STRINGS: Record<'en' | 'sw', ContentStrings & {
       tag: 'BRAND STRATEGY AI MARKETING EXPERT CREATIVE',
       title1: 'Building Brands.',
       title2: 'Revamping Minds.',
-      subtitle: 'I help professionals and businesses create visible brands using creative strategy, AI, and storytelling while nurturing the mind behind the brand.',
+      subtitle: 'Brand Strategy • AI Marketing Expert • Creative. I help professionals and businesses create visible brands using creative strategy, AI, and storytelling while nurturing the mind behind the brand.',
       ctaAgency: 'Agency Services',
     },
     aiTool: {
@@ -109,7 +109,7 @@ export const STRINGS: Record<'en' | 'sw', ContentStrings & {
       tag: 'MKAKATI WA CHAPA METAALAM WA AI UBUNIFU',
       title1: 'Jenga Chapa.',
       title2: 'Badili Fikra.',
-      subtitle: 'Nawasaidia wafanyabiashara kutumia AI na chapa za hali ya juu, huku nikijenga uwezo wa akili nyuma ya chapa hiyo.',
+      subtitle: 'Mkakati wa Chapa • Mtaalam wa AI • Ubunifu. Nawasaidia wafanyabiashara kutumia AI na chapa za hali ya juu, huku nikijenga uwezo wa akili nyuma ya chapa hiyo.',
       ctaAgency: 'Huduma za Trouve',
     },
     aiTool: {

@@ -182,9 +182,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
 
           <div className="order-2 md:order-1 flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-orange-50/80 backdrop-blur-sm border border-orange-100 text-orange-600 text-[8px] font-black tracking-[0.4em] mb-8 uppercase">
-              {t.hero.tag}
-            </div>
+
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tighter mb-8 text-zinc-900 uppercase">
               {t.hero.title1} <br />
@@ -373,8 +371,8 @@ const App: React.FC = () => {
             <p className="text-xl md:text-2xl text-zinc-500 mb-12 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
               "{t.revamp.desc}"
             </p>
-            <button onClick={() => setView('book')} className="px-10 py-5 bg-white border border-zinc-200 rounded-2xl text-[10px] font-black uppercase tracking-widest text-zinc-900 shadow-sm hover:border-purple-600 transition-all flex items-center justify-center lg:justify-start gap-3 active:scale-95 shadow-lg shadow-purple-500/5 mx-auto lg:mx-0">
-              <BookOpen className="text-purple-600" size={18} /> {t.revamp.book}
+            <button onClick={() => setView('book')} className="group px-10 py-5 bg-white border-2 border-purple-600 rounded-2xl text-[10px] font-black uppercase tracking-widest text-purple-900 shadow-xl shadow-purple-500/10 hover:bg-purple-600 hover:text-white transition-all flex items-center justify-center lg:justify-start gap-3 active:scale-95 mx-auto lg:mx-0">
+              <BookOpen className="text-purple-600 group-hover:text-white transition-colors" size={18} /> {t.revamp.book}
             </button>
           </div>
 
