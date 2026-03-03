@@ -128,14 +128,14 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
 
             <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1 text-left">
-                <span className="text-gold-500 font-black tracking-[0.8em] uppercase text-sm mb-10 block animate-pulse">Official Digital Launch</span>
+                <span className="text-yellow-500 font-black tracking-[0.8em] uppercase text-sm mb-10 block animate-pulse">Official Digital Launch</span>
                 <h1 className="font-serif font-black mb-8 leading-[0.85] tracking-tighter text-white">
                   <span className="text-7xl md:text-8xl lg:text-9xl block mb-2">REVAMP</span>
                   <span className="text-5xl md:text-6xl lg:text-7xl gold-text italic block mb-2">YOUR</span>
                   <span className="text-7xl md:text-8xl lg:text-9xl block">MIND</span>
                 </h1>
 
-                <div className="h-1.5 w-40 bg-gold-500 mb-12 rounded-full"></div>
+                <div className="h-1.5 w-40 bg-yellow-500 mb-12 rounded-full"></div>
 
                 <p className="text-2xl md:text-3xl text-stone-300 font-light italic mb-16 leading-relaxed max-w-xl">
                   "From Flying and Falling to Soaring on Eagles' Wings"
@@ -145,9 +145,9 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
                   <button
                     onClick={() => {
                       if (activeChapterId) navigateToChapter(activeChapterId);
-                      else setCurrentSection(NavigationSection.TOC);
+                      else navigateToChapter(1);
                     }}
-                    className="w-full sm:w-auto px-16 py-6 bg-gold-500 text-purple-950 font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-2xl shadow-gold-500/20"
+                    className="w-full sm:w-auto px-16 py-6 bg-yellow-500 text-purple-950 font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-white transition-all transform hover:scale-105 active:scale-95 shadow-2xl shadow-yellow-500/20"
                   >
                     {activeChapterId ? 'Resume Journey' : 'Begin Reading'}
                   </button>
@@ -162,7 +162,7 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
 
               <div className="order-1 lg:order-2 flex justify-center">
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gold-500/20 blur-[100px] rounded-full animate-pulse"></div>
+                  <div className="absolute inset-0 bg-yellow-500/20 blur-[100px] rounded-full animate-pulse"></div>
                   <div className="relative z-10 w-[300px] md:w-[450px] aspect-[2/3] book-shadow transition-transform duration-700 group-hover:scale-105 group-hover:rotate-1">
                     <img
                       src="https://i.ibb.co/hFPrqCpF/Gemini-Generated-Image-938the938the938t.png"
@@ -185,13 +185,13 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
               <p className="text-stone-500 text-xl font-serif max-w-2xl mx-auto italic mt-10">A carefully architected journey through neurological and spiritual transformation.</p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-20">
+            <div className="max-w-4xl mx-auto flex flex-col gap-12">
               {PARTS.map((part, pIdx) => (
                 <div key={pIdx} className="bg-white p-16 rounded-[4rem] shadow-[0_20px_80px_rgba(0,0,0,0.04)] border border-stone-100 hover:border-purple-100 transition-all duration-700 group flex flex-col">
                   <div className="flex flex-col mb-16 relative">
                     <span className="text-purple-600 font-black tracking-[0.6em] uppercase text-sm mb-4">{part.title}</span>
                     <h3 className="text-4xl font-black font-serif leading-tight group-hover:text-purple-900 transition-colors tracking-tighter italic uppercase">{part.subtitle}</h3>
-                    <div className="absolute -left-10 top-0 w-2 h-full bg-purple-50 group-hover:bg-gold-500 transition-colors rounded-full"></div>
+                    <div className="absolute -left-10 top-0 w-2 h-full bg-purple-50 group-hover:bg-yellow-500 transition-colors rounded-full"></div>
                   </div>
                   <div className="space-y-8 flex-grow">
                     {part.chapters.map(chId => {
@@ -204,7 +204,7 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
                           onClick={() => navigateToChapter(chId)}
                           className="w-full flex items-start group/item text-left py-6 border-b border-stone-50 last:border-0 hover:translate-x-3 transition-all"
                         >
-                          <span className={`w-16 font-serif font-black text-5xl mr-6 transition-all ${isRead ? 'text-gold-500' : 'text-stone-100 group-hover/item:text-purple-200'}`}>0{chId}</span>
+                          <span className={`w-16 font-serif font-black text-5xl mr-6 transition-all ${isRead ? 'text-yellow-500' : 'text-stone-100 group-hover/item:text-purple-200'}`}>0{chId}</span>
                           <div className="flex-grow">
                             <p className="font-black text-2xl text-zinc-900 group-hover/item:text-purple-950 transition-colors mb-2">{ch.title}</p>
                             <p className="text-sm text-zinc-600 font-bold tracking-tight line-clamp-1">{ch.subtitle}</p>
@@ -266,10 +266,10 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
                       </p>
                     )}
 
-                    <div className="h-[2px] w-40 bg-gold-500/50 mb-16"></div>
+                    <div className="h-[2px] w-40 bg-yellow-500/50 mb-16"></div>
 
                     {activeChapter.quote && (
-                      <div className="max-w-3xl text-center px-12 border-l-8 border-gold-500/30 italic bg-purple-50/20 py-10 rounded-r-3xl shadow-sm">
+                      <div className="max-w-3xl text-center px-12 border-l-8 border-yellow-500/30 italic bg-purple-50/20 py-10 rounded-r-3xl shadow-sm">
                         <p className="text-3xl font-serif text-purple-900 leading-relaxed font-light">
                           "{activeChapter.quote}"
                         </p>
@@ -336,7 +336,7 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
               <div className="grid lg:grid-cols-2 gap-32 items-center">
                 <div className="order-2 lg:order-1">
                   <span className="text-purple-700 font-black tracking-[0.8em] uppercase text-xs mb-10 block">The Visionary Behind the Message</span>
-                  <h2 className="text-7xl md:text-[9rem] font-serif font-black mb-12 leading-[0.85] tracking-tighter text-purple-950">Teresia Waithera <span className="text-gold-500 italic block">Wanjiru</span></h2>
+                  <h2 className="text-7xl md:text-[9rem] font-serif font-black mb-12 leading-[0.85] tracking-tighter text-purple-950">Teresia Waithera <span className="text-yellow-500 italic block">Wanjiru</span></h2>
                   <div className="prose prose-2xl text-zinc-800 mb-20 font-body leading-relaxed font-medium">
                     <p>Teresia is a multifaceted force in the digital and creative space. A marketer, actress, and dynamic speaker, she has evolved from a brand influencer into a <strong>Think Influencer</strong>.</p>
                     <p>Raised in the streets of Huruma and Githurai, her journey is a testament to the power of tenacity. She overcame trauma, addiction, and high-functioning depression to discover her true identity.</p>
@@ -344,13 +344,13 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
                   <div className="flex flex-wrap gap-10">
                     <button
                       onClick={() => handleActionableButton('follow')}
-                      className="px-16 py-6 bg-purple-950 text-white rounded-3xl font-black uppercase text-xs tracking-[0.4em] hover:bg-gold-500 hover:text-purple-950 transition-all hover:scale-105 active:scale-95"
+                      className="px-16 py-6 bg-purple-950 text-white rounded-3xl font-black uppercase text-xs tracking-[0.4em] hover:bg-yellow-500 hover:text-purple-950 transition-all hover:scale-105 active:scale-95"
                     >
                       Follow Journey
                     </button>
                     <button
                       onClick={() => handleActionableButton('book')}
-                      className="px-16 py-6 bg-gold-500 text-purple-950 rounded-3xl font-black uppercase text-xs tracking-[0.4em] hover:bg-purple-950 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl shadow-gold-500/20"
+                      className="px-16 py-6 bg-yellow-500 text-purple-950 rounded-3xl font-black uppercase text-xs tracking-[0.4em] hover:bg-purple-950 hover:text-white transition-all hover:scale-105 active:scale-95 shadow-xl shadow-yellow-500/20"
                     >
                       Book Keynote
                     </button>
