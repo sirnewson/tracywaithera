@@ -23,19 +23,44 @@
         extend: {
           colors: {
             brand: {
-              navy: '#7c3aed', // Violet 600
-              navyDark: '#4c1d95', // Violet 900
+              navy: '#7c3aed',
+              navyDark: '#4c1d95',
               purple: '#6D28D9',
               gold: '#FDB931',
               goldDeep: '#D49B00',
               goldBright: '#FFECB3',
               slate: '#475569'
-            }
+            },
+            trouveBlue: '#0054A6',
+            trouveBlueLight: '#0070DD',
+            trouveBlueDark: '#001A33',
+            trouveGold: '#D4AF37',
+            trouveBg: '#FDFDFD',
           },
           fontFamily: {
-            // Prioritize Inter for Tracy, fallback to Plus Jakarta for Trouve if needed
             sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
-            display: ['Outfit', 'sans-serif']
+            display: ['Playfair Display', 'Outfit', 'sans-serif']
+          },
+          animation: {
+            'marquee': 'marquee 60s linear infinite',
+            'blob': 'blob 15s infinite alternate',
+            'float': 'float 10s ease-in-out infinite',
+          },
+          keyframes: {
+            marquee: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+            },
+            blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -40px) scale(1.05)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-15px)' },
+            }
           }
         }
       }
@@ -47,6 +72,11 @@
     :root {
       --brand-gold: #FDB931;
       --brand-gold-deep: #D49B00;
+      /* Trouve Core Colors */
+      --trouve-blue: #0054A6;
+      --trouve-gold: #D4AF37;
+      --trouve-light: #FDFDFD;
+      --trouve-text-dark: #001A33;
     }
 
     body {
@@ -55,6 +85,84 @@
       background-color: #ffffff;
       color: #09090b;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+    }
+
+    /* Trouve New Template Styles */
+    .glass-nav { 
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+    .nav-link {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        font-weight: 800;
+    }
+    .nav-link.active { 
+        color: #0054A6; 
+        opacity: 1 !important;
+    }
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background: #0054A6;
+        border-radius: 50%;
+    }
+    .ios-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 36px;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(15px);
+    }
+    .ios-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px -20px rgba(0, 84, 166, 0.12);
+        background: #FFFFFF;
+    }
+    .bold-img {
+        filter: contrast(1.1) saturate(1.15) brightness(1.02);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .group:hover .bold-img {
+        filter: contrast(1.2) saturate(1.25) brightness(1.05);
+        transform: scale(1.05);
+    }
+    .card-premium {
+        background: white;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .card-premium:hover {
+        box-shadow: 0 20px 40px -10px rgba(0, 86, 179, 0.15);
+        border-color: var(--trouve-blue);
+        transform: translateY(-8px);
+    }
+    .bg-blob {
+        position: fixed;
+        z-index: -1;
+        filter: blur(100px);
+        opacity: 0.25;
+    }
+    .hero-pattern {
+        background-color: #ffffff;
+        background-image: radial-gradient(var(--trouve-blue) 0.5px, #ffffff 0.5px);
+        background-size: 20px 20px;
+        background-attachment: fixed;
+        opacity: 0.03;
+    }
+    .golden-gradient {
+        background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     /* Tracy Waithera Styles */

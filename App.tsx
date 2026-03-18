@@ -6,8 +6,9 @@ import {
 } from 'lucide-react';
 import { STRINGS, SERVICES, VIDEOS, RATE_CARD, ARTICLES, SOCIAL_LINKS, CONNECT_ITEMS } from './constants';
 import { Language, Article } from './types';
-import TrouveApp from './apps/trouve/TrouveApp';
+import { TrouveApp } from './apps/trouve/TrouveApp';
 import BookApp from './apps/book/BookApp';
+import { ChatBot } from './apps/trouve/components/ChatBot';
 
 type AppView = 'main' | 'trouve' | 'book';
 
@@ -285,30 +286,30 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Agency Section - Dark Theme Accent */}
-      <section id="agency" className="py-32 px-6 bg-zinc-950 text-white relative overflow-hidden">
+      {/* Agency Section - Bright Trouve Theme Accent */}
+      <section id="agency" className="py-32 px-6 bg-[#f8f9fa] text-brand-navyDark relative overflow-hidden border-y border-brand-gold/20 shadow-inner">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
           <div>
-            <span className="text-orange-500 font-black tracking-widest text-[10px] uppercase block mb-6">Trouve Agency</span>
-            <h2 className="text-6xl md:text-8xl font-black mb-10 uppercase tracking-tighter">
-              {t.trouve.title1} <span className="gradient-text italic">{t.trouve.title2}</span>
+            <span className="text-brand-gold font-black tracking-widest text-[10px] uppercase block mb-6 px-4 py-1.5 bg-brand-gold/10 inline-block rounded-full">Trouve Agency</span>
+            <h2 className="text-6xl md:text-8xl font-black mb-10 uppercase tracking-tighter text-brand-navyDark">
+              {t.trouve.title1} <span className="text-brand-gold italic">{t.trouve.title2}</span>
             </h2>
-            <p className="text-xl md:text-2xl text-zinc-400 mb-12 font-medium leading-relaxed">{t.trouve.desc}</p>
-            <button onClick={() => setView('trouve')} className="bg-white text-zinc-900 font-black px-10 py-5 rounded-2xl hover:bg-orange-500 hover:text-white transition-all uppercase tracking-widest text-[10px]">
+            <p className="text-xl md:text-2xl text-slate-500 mb-12 font-medium leading-relaxed">{t.trouve.desc}</p>
+            <button onClick={() => setView('trouve')} className="bg-brand-navyDark text-white font-black px-10 py-5 rounded-2xl hover:bg-brand-gold hover:text-brand-navyDark transition-all uppercase tracking-widest text-[10px] shadow-xl shadow-brand-navyDark/10">
               {t.trouve.partner} (Enter Site)
             </button>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
-              <div className="h-64 rounded-[2.5rem] bg-zinc-900 border border-white/5 flex flex-col justify-end p-8 group hover:bg-orange-600 transition-all">
-                <Bot className="mb-4 text-orange-500 group-hover:text-white" size={40} />
-                <p className="font-black uppercase tracking-widest text-[10px]">AI Systems</p>
+              <div className="h-64 rounded-[2.5rem] bg-white border border-brand-navyDark/10 shadow-xl flex flex-col justify-end p-8 group hover:bg-brand-navyDark transition-all duration-300">
+                <Bot className="mb-4 text-brand-gold group-hover:text-white transition-colors" size={40} />
+                <p className="font-black uppercase tracking-widest text-[10px] text-brand-navyDark group-hover:text-white transition-colors">AI Systems</p>
               </div>
             </div>
             <div className="space-y-4 pt-12">
-              <div className="h-64 rounded-[2.5rem] bg-zinc-900 border border-white/5 flex flex-col justify-end p-8 group hover:bg-purple-600 transition-all">
-                <Compass className="mb-4 text-purple-500 group-hover:text-white" size={40} />
-                <p className="font-black uppercase tracking-widest text-[10px]">Creative OS</p>
+              <div className="h-64 rounded-[2.5rem] bg-white border border-brand-navyDark/10 shadow-xl flex flex-col justify-end p-8 group hover:bg-brand-gold transition-all duration-300">
+                <Compass className="mb-4 text-brand-navyDark group-hover:text-white transition-colors" size={40} />
+                <p className="font-black uppercase tracking-widest text-[10px] text-brand-navyDark group-hover:text-white transition-colors">Creative OS</p>
               </div>
             </div>
           </div>
@@ -494,6 +495,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+      <ChatBot />
     </div>
   );
 };

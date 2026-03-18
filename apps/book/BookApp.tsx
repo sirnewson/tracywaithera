@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationSection, Part, Chapter } from './types';
 import { CHAPTERS, PARTS } from './constants';
+import { ChatBot } from '../trouve/components/ChatBot';
 
 interface BookAppProps {
   onBack?: () => void;
@@ -380,6 +381,7 @@ const BookApp: React.FC<BookAppProps> = ({ onBack }) => {
           </div>
         </div>
       </footer>
+      <ChatBot />
     </div >
   );
 };
