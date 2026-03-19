@@ -22,6 +22,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
     : "Hello! 👋 I am The Genius Trouve Marketer. Ready to scale your biashara? Ask me about our SMM rates, services, or how to book a strategy call.";
 
   const [isOpen, setIsOpen] = useState(initialOpen);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
@@ -39,6 +40,16 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-hide the intro message after 8 seconds if the user hasn't interacted (Tracy Only)
+  useEffect(() => {
+    if (initialOpen && !hasInteracted && isTracy) {
+      const timer = setTimeout(() => {
+        setIsOpen(false);
+      }, 7000);
+      return () => clearTimeout(timer);
+    }
+  }, [initialOpen, hasInteracted, isTracy]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -72,10 +83,16 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
 
         if (lowerInput.includes('rate') || lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('package')) {
           botText = "Our Brand Identity packages start at 15k KES, and our SMM rates range from our 'Authority' package at 100k KES to 'The Empire' at 350k+ KES. Send us a message to secure your package!";
+        } else if (lowerInput.includes('ai') || lowerInput.includes('intelligence') || lowerInput.includes('tool')) {
+          botText = "We leverage 'Cyborg Creativity'—merging human intuition with machine efficiency. Our Smart Systems use Gemini for context analysis, Midjourney/Flux for visual boundary-pushing, and custom Branding Assistants to scale your brand without losing its soul.";
+        } else if (lowerInput.includes('marketing') || lowerInput.includes('advertising') || lowerInput.includes('ads') || lowerInput.includes('strategy')) {
+          botText = "We believe in 'Heart & Logic'. The 'Volume Era' of posting generic content is over. We build true authority through community-first growth and Performance Advertising that prioritizes heavy Return on Ad Spend (ROAS) rather than vanity metrics.";
         } else if (lowerInput.includes('trouve') || lowerInput.includes('what do you do') || lowerInput.includes('services')) {
-          botText = "Trouve Marketing Solutions builds brands with Heart & Logic. We specialize in Brand Identity, Smart AI Systems, and Social Media Management. Reach out on WhatsApp to get started!";
+          botText = "Trouve Marketing Solutions builds brands with Heart & Logic. We specialize in complete Brand Foundations, Smart AI Systems, Performance Ads, and Social Media Management. Reach out on WhatsApp to get started!";
+        } else if (lowerInput.includes('book') || lowerInput.includes('call') || lowerInput.includes('consultation')) {
+          botText = "Fantastic! You can instantly request a strategy call directly with us through WhatsApp. Let's scale your biashara! 🚀";
         } else if (lowerInput.includes('hi') || lowerInput.includes('hello')) {
-          botText = "Hello! Ready to take your brand to the next level? Tell me what you need, and I'll connect you directly to our WhatsApp strategy team.";
+          botText = "Hello! Ready to take your brand to the next level? I am The Genius Trouve Marketer. Ask me about our AI capabilities, marketing strategies, or rates.";
           actionLink = ''; 
           actionLabel = '';
         }
@@ -140,19 +157,19 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
             {isTracy ? (
               <>
                 <button
-                  onClick={() => setInput('Tell me about Tracy')}
+                  onClick={() => { setInput('Tell me about Tracy'); setHasInteracted(true); }}
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-purple-50 text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors"
                 >
                   Founder
                 </button>
                 <button
-                  onClick={() => setInput('Tell me about your book')}
+                  onClick={() => { setInput('Tell me about your book'); setHasInteracted(true); }}
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-purple-50 text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors"
                 >
                   My Book
                 </button>
                 <button
-                  onClick={() => setInput('What are your brand insights?')}
+                  onClick={() => { setInput('What are your brand insights?'); setHasInteracted(true); }}
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-purple-50 text-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors"
                 >
                   Insights
@@ -161,13 +178,19 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
             ) : (
               <>
                 <button
-                  onClick={() => setInput('What are your SMM rates?')}
+                  onClick={() => { setInput('Tell me about your AI tools'); setHasInteracted(true); }}
+                  className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-brand-navy/5 text-brand-navy rounded-full hover:bg-brand-navy hover:text-white transition-colors"
+                >
+                  AI Insights
+                </button>
+                <button
+                  onClick={() => { setInput('What are your SMM rates?'); setHasInteracted(true); }}
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-brand-navy/5 text-brand-navy rounded-full hover:bg-brand-navy hover:text-white transition-colors"
                 >
                   Rates
                 </button>
                 <button
-                  onClick={() => setInput('I want to book a consultation')}
+                  onClick={() => { setInput('I want to book a consultation'); setHasInteracted(true); }}
                   className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-brand-gold/10 text-brand-goldDeep rounded-full hover:bg-brand-gold hover:text-white transition-colors"
                 >
                   Book Consult
@@ -181,7 +204,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
             <input
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => { setInput(e.target.value); setHasInteracted(true); }}
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything..."
               className={`flex-1 bg-slate-50 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none transition-all text-zinc-900 ${isTracy ? 'focus:border-purple-600 focus:ring-1 focus:ring-purple-600/50' : 'focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/50'}`}
