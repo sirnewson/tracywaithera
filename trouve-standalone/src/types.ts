@@ -26,15 +26,6 @@ export interface Article {
   readingTime: string;
 }
 
-export interface Program {
-  id: string;
-  title: string;
-  description: string;
-  topics: string[];
-  posterUrl: string;
-  isAvailable: boolean;
-}
-
 export interface ContentStrings {
   nav: {
     services: string;
@@ -44,7 +35,6 @@ export interface ContentStrings {
     quote: string;
     rates: string;
     insights: string;
-    programs: string;
   };
   hero: {
     tag: string;
@@ -71,11 +61,6 @@ export interface ContentStrings {
     title1: string;
     title2: string;
     subtitle: string;
-  };
-  programs: {
-    title: string;
-    subtitle: string;
-    enroll: string;
   };
   about: {
     title1: string;

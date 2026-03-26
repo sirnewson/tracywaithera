@@ -18,7 +18,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
   const isTracy = type === 'tracy';
   const botName = isTracy ? 'Tracy Waithera' : 'The Genius Trouve Marketer';
   const initialGreeting = isTracy 
-    ? "Hi there! 👋 I am Tracy Waithera, global brand strategist and AI marketing expert. I can share insights about the C.A.M. Authority Model, my book, or help you book a keynote. How can I inspire you today?"
+    ? "Hi there! 👋 I am Tracy Waithera. I can share insights about my journey, the brand, or help you book a keynote. How can I inspire you today?"
     : "Hello! 👋 I am The Genius Trouve Marketer. Ready to scale your biashara? Ask me about our SMM rates, services, or how to book a strategy call.";
 
   const [isOpen, setIsOpen] = useState(initialOpen);
@@ -65,15 +65,15 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
       if (isTracy) {
         botText = "I'd love to connect! You can book a keynote, class, or consulting session by reaching out via my contact forms.";
         if (lowerInput.includes('who are you') || lowerInput.includes('founder') || lowerInput.includes('tracy') || lowerInput.includes('about')) {
-          botText = "I am a global brand strategist, AI marketing expert, and the founder of Trouve Marketing Solutions (Trouve Agency). Operating at the intersection of human creativity and machine intelligence, I help professionals and businesses build highly visible personal brands.";
+          botText = "I am Teresia (Tracy) Waithera Wanjiru, a marketing consultant, actress, and dynamic content creator. I evolved from a brand influencer into a Think Influencer after overcoming severe burnout, which I openly discuss on my YouTube interviews.";
         } else if (lowerInput.includes('book') || lowerInput.includes('revamp') || lowerInput.includes('mind') || lowerInput.includes('read')) {
           botText = "My book 'Revamp Your Mind: From Flying and Falling to Soaring on Eagles' Wings' is a highly strategic guide for neurological and spiritual transformation. It details my healing journey and you can read it directly on my site!";
-        } else if (lowerInput.includes('brand') || lowerInput.includes('insights') || lowerInput.includes('social') || lowerInput.includes('model') || lowerInput.includes('c.a.m') || lowerInput.includes('cam')) {
-          botText = "Through Trouve, I architect AI automated systems and creative digital strategies that handle the heavy lifting of marketing. My proprietary C.A.M. Authority Model focuses not only on technical business scaling but also on the mental clarity and psychological resilience of the leadership behind the brand.";
+        } else if (lowerInput.includes('brand') || lowerInput.includes('insights') || lowerInput.includes('social')) {
+          botText = "I openly share my experiences with redefining friendships, setting boundaries, and authenticity on social media. My brand focuses on combining deep logic with authentic human connection, helping businesses discover their true identity and soar.";
         } else if (lowerInput.includes('class') || lowerInput.includes('keynote') || lowerInput.includes('coach')) {
-          botText = "You can book me for a keynote, class, or coaching session by clicking 'Contact' or 'Quote' on the main site navigation! Let's revamp your mind and scale your brand.";
+          botText = "You can book me for a keynote, class, or coaching session by clicking 'Contact' or 'Quote' on the main site navigation! Let's revamp your mind.";
         } else if (lowerInput.includes('hi') || lowerInput.includes('hello')) {
-          botText = "Hello! Let me know if you want to learn about my journey, my book 'Revamp Your Mind', or my work with the C.A.M. Authority Model and AI marketing.";
+          botText = "Hello! Let me know if you want to learn about my journey, my book 'Revamp Your Mind', or my latest insights on social media.";
         }
         setMessages((prev) => [...prev, { id: Date.now().toString(), sender: 'bot', text: botText }]);
       } else {

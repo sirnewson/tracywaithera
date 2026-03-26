@@ -4,13 +4,14 @@ import {
   Menu, X, Sparkles, ShieldCheck, Compass, Mail, Phone, MapPin, Calendar,
   Award, Heart, Bot, Mic, Wallet, BookOpen, FileText, Clock, Zap, ArrowRight, MessageSquare, Play
 } from 'lucide-react';
-import { STRINGS, SERVICES, VIDEOS, RATE_CARD, ARTICLES, SOCIAL_LINKS, CONNECT_ITEMS } from './constants';
+import { STRINGS, SERVICES, VIDEOS, RATE_CARD, ARTICLES, SOCIAL_LINKS, CONNECT_ITEMS, PROGRAMS } from './constants';
 import { Language, Article } from './types';
 import { TrouveApp } from './apps/trouve/TrouveApp';
 import BookApp from './apps/book/BookApp';
+import ProgramsApp from './apps/programs/ProgramsApp';
 import { ChatBot } from './apps/trouve/components/ChatBot';
 
-type AppView = 'main' | 'trouve' | 'book';
+type AppView = 'main' | 'trouve' | 'book' | 'programs';
 
 interface ArticleExtended extends Article {
   image: string;
@@ -20,6 +21,7 @@ const LOGO_URL = "https://i.ibb.co/wrp0bk5c/Gemini-Generated-Image-qlt67eqlt67eq
 const HERO_IMAGE_URL = "https://i.ibb.co/wrp0bk5c/Gemini-Generated-Image-qlt67eqlt67eqlt6.png";
 const BOOK_IMAGE_URL = "https://i.ibb.co/hFPrqCpF/Gemini-Generated-Image-938the938the938t.png";
 const ABOUT_IMAGE_URL = "https://i.ibb.co/0ytBb3Lh/tracywaithera-2025-04-01-T070018-000-Z.jpg";
+const AI_POSTER_URL = "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800";
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>('main');
@@ -29,14 +31,22 @@ const App: React.FC = () => {
   const [showRateCard, setShowRateCard] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<ArticleExtended | null>(null);
   const [formData, setFormData] = useState({ name: '', goal: '' });
+  const [aboutImage, setAboutImage] = useState(ABOUT_IMAGE_URL);
 
   const t = STRINGS[lang];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
+    
+    // Toggle About image every 5 seconds
+    const intervalId = setInterval(() => {
+      setAboutImage(prev => prev === ABOUT_IMAGE_URL ? AI_POSTER_URL : ABOUT_IMAGE_URL);
+    }, 5000);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(intervalId);
     };
   }, []);
 
@@ -78,6 +88,10 @@ const App: React.FC = () => {
     return <BookApp onBack={() => setView('main')} />;
   }
 
+  if (view === 'programs') {
+    return <ProgramsApp onBack={() => setView('main')} />;
+  }
+
   return (
     <div className="relative min-h-screen bg-white text-zinc-800 selection:bg-orange-500 selection:text-white font-sans">
       {/* Article Modal */}
@@ -94,7 +108,33 @@ const App: React.FC = () => {
               <span className="text-[9px] font-black text-orange-600 tracking-[0.3em] uppercase mb-4 block">Knowledge Depth</span>
               <h2 className="text-3xl font-black text-zinc-900 mb-6 leading-tight uppercase tracking-tighter">{selectedArticle.title}</h2>
               <div className="space-y-6 text-zinc-600 leading-relaxed">
-                {selectedArticle.content.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
+                {selectedArticle.content.split('\n\n').map((para, i) => {
+                  if (para.startsWith('## ')) {
+                    return <h2 key={i} className="text-2xl font-black text-zinc-900 mt-8 mb-4">{para.replace('## ', '')}</h2>;
+                  }
+                  if (para.startsWith('# ')) {
+                    return <h1 key={i} className="text-3xl font-black text-zinc-900 mt-10 mb-6">{para.replace('# ', '')}</h1>;
+                  }
+                  if (para.startsWith('* ')) {
+                    return (
+                      <ul key={i} className="list-disc pl-5 space-y-2 mb-6 text-zinc-700">
+                        {para.split('\n').map((item, j) => (
+                          <li key={j}>{item.replace('* ', '')}</li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  const parts = para.split(/(\*\*.*?\*\*)/g);
+                  return (
+                    <p key={i}>
+                      {parts.map((part, k) => 
+                        part.startsWith('**') && part.endsWith('**') 
+                          ? <strong key={k} className="font-bold text-zinc-900">{part.slice(2, -2)}</strong> 
+                          : part
+                      )}
+                    </p>
+                  );
+                })}
               </div>
               <button onClick={() => sendWhatsApp()} className="mt-8 bg-zinc-900 text-white font-black px-8 py-4 rounded-xl hover:bg-orange-600 transition-all uppercase tracking-widest text-[10px]">Discuss Insights</button>
             </div>
@@ -141,6 +181,10 @@ const App: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-orange-600 group-hover:w-full transition-all duration-300" />
               </button>
             ))}
+            <button key="programs" onClick={() => setView('programs')} className="text-[10px] font-black text-zinc-900 hover:text-orange-600 transition-all uppercase tracking-widest relative group">
+              {t.nav.programs}
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-orange-600 group-hover:w-full transition-all duration-300" />
+            </button>
             <button onClick={handleRateCardToggle} className="text-[10px] font-black text-zinc-900 hover:text-orange-600 transition-all uppercase tracking-widest">
               {t.nav.rates}
             </button>
@@ -218,8 +262,75 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Insights Section (Moved to Top) */}
-      <section id="insights" className="py-24 px-6 bg-white relative">
+      {/* About Section */}
+      <section id="about" className="py-32 px-6 bg-white overflow-hidden border-b border-zinc-100">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+          <div className="order-2 lg:order-1">
+            <span className="text-[10px] font-black text-orange-600 tracking-[0.5em] uppercase mb-4 block">The Narrative</span>
+            <h2 className="text-4xl md:text-6xl font-black mb-10 text-zinc-900 leading-[1.1] uppercase tracking-tighter">
+              {t.about.title1} <br /><span className="gradient-text italic">{t.about.title2}</span>
+            </h2>
+            <div className="space-y-8 text-lg text-zinc-500 font-normal leading-relaxed mb-12">
+              <p className="border-l-4 border-orange-500 pl-6">{t.about.vision}</p>
+              <p>{t.about.philosophy}</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+              {[
+                { icon: ShieldCheck, title: t.about.dataDriven, desc: 'Strategy rooted in measurable performance.' },
+                { icon: Compass, title: t.about.ethical, desc: 'Leading with integrity and a global vision.' }
+              ].map((item, i) => (
+                <div key={i} className="p-8 rounded-[2rem] bg-zinc-50 border border-zinc-100 shadow-sm group hover:border-orange-500/20 transition-all">
+                  <div className="mb-6 w-12 h-12 rounded-xl bg-white flex items-center justify-center text-orange-600 shadow-sm group-hover:scale-110 transition-transform">
+                    <item.icon size={24} />
+                  </div>
+                  <h4 className="text-lg font-black text-zinc-900 mb-2 uppercase tracking-tight">{item.title}</h4>
+                  <p className="text-sm text-zinc-400 font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <button onClick={() => sendWhatsApp()} className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-zinc-900 active:scale-95 transition-transform">
+              Connect for Collaboration <div className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600 transition-all"><ArrowRight size={18} /></div>
+            </button>
+          </div>
+
+          <div className="order-1 lg:order-2 relative">
+            <div className="absolute -inset-10 bg-orange-500/5 rounded-full blur-[120px] -z-10 animate-pulse" />
+            <div className="relative group overflow-hidden rounded-[3.5rem] shadow-2xl border-4 border-white bg-white">
+              <img
+                src={aboutImage}
+                className="w-full h-[600px] object-cover transition-all duration-1000"
+                alt="Tracy Waithera - About"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-60 pointer-events-none" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Agency Section - Bright Trouve Theme Accent */}
+      <section id="agency" className="py-32 px-6 bg-[#f8f9fa] text-brand-navyDark relative overflow-hidden border-y border-brand-gold/20 shadow-inner">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
+          <div>
+            <span className="text-brand-gold font-black tracking-widest text-[10px] uppercase block mb-6 px-4 py-1.5 bg-brand-gold/10 inline-block rounded-full">Trouve Agency</span>
+            <h2 className="text-6xl md:text-8xl font-black mb-10 uppercase tracking-tighter text-brand-navyDark">
+              {t.trouve.title1} <span className="text-brand-gold italic">{t.trouve.title2}</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-slate-500 mb-12 font-medium leading-relaxed">{t.trouve.desc}</p>
+            <button onClick={() => setView('trouve')} className="bg-brand-navyDark text-white font-black px-10 py-5 rounded-2xl hover:bg-brand-gold hover:text-brand-navyDark transition-all uppercase tracking-widest text-[10px] shadow-xl shadow-brand-navyDark/10">
+              {t.trouve.partner} (Enter Site)
+            </button>
+          </div>
+          <div className="flex items-center justify-center relative p-8 lg:p-0 group">
+            <div className="absolute inset-0 bg-brand-gold/10 rounded-full blur-[100px] -z-10 group-hover:bg-brand-gold/20 transition-all duration-700"></div>
+            <img src="https://i.ibb.co/kCnKMDf/Whats-App-Image-2022-11-01-at-2-55-24-PM.jpg" alt="Trouve Agency Services" className="w-full max-w-lg aspect-square object-cover rounded-[3rem] shadow-2xl hover:scale-[1.02] transition-transform duration-700 border-8 border-white" />
+          </div>
+        </div>
+      </section>
+
+      {/* Insights Section */}
+      <section id="insights" className="py-24 px-6 bg-zinc-50 relative">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
@@ -286,82 +397,6 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Agency Section - Bright Trouve Theme Accent */}
-      <section id="agency" className="py-32 px-6 bg-[#f8f9fa] text-brand-navyDark relative overflow-hidden border-y border-brand-gold/20 shadow-inner">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
-          <div>
-            <span className="text-brand-gold font-black tracking-widest text-[10px] uppercase block mb-6 px-4 py-1.5 bg-brand-gold/10 inline-block rounded-full">Trouve Agency</span>
-            <h2 className="text-6xl md:text-8xl font-black mb-10 uppercase tracking-tighter text-brand-navyDark">
-              {t.trouve.title1} <span className="text-brand-gold italic">{t.trouve.title2}</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-slate-500 mb-12 font-medium leading-relaxed">{t.trouve.desc}</p>
-            <button onClick={() => setView('trouve')} className="bg-brand-navyDark text-white font-black px-10 py-5 rounded-2xl hover:bg-brand-gold hover:text-brand-navyDark transition-all uppercase tracking-widest text-[10px] shadow-xl shadow-brand-navyDark/10">
-              {t.trouve.partner} (Enter Site)
-            </button>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <div className="h-64 rounded-[2.5rem] bg-white border border-brand-navyDark/10 shadow-xl flex flex-col justify-end p-8 group hover:bg-brand-navyDark transition-all duration-300">
-                <Bot className="mb-4 text-brand-gold group-hover:text-white transition-colors" size={40} />
-                <p className="font-black uppercase tracking-widest text-[10px] text-brand-navyDark group-hover:text-white transition-colors">AI Systems</p>
-              </div>
-            </div>
-            <div className="space-y-4 pt-12">
-              <div className="h-64 rounded-[2.5rem] bg-white border border-brand-navyDark/10 shadow-xl flex flex-col justify-end p-8 group hover:bg-brand-gold transition-all duration-300">
-                <Compass className="mb-4 text-brand-navyDark group-hover:text-white transition-colors" size={40} />
-                <p className="font-black uppercase tracking-widest text-[10px] text-brand-navyDark group-hover:text-white transition-colors">Creative OS</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-32 px-6 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          <div className="order-2 lg:order-1">
-            <span className="text-[10px] font-black text-orange-600 tracking-[0.5em] uppercase mb-4 block">The Narrative</span>
-            <h2 className="text-4xl md:text-6xl font-black mb-10 text-zinc-900 leading-[1.1] uppercase tracking-tighter">
-              {t.about.title1} <br /><span className="gradient-text italic">{t.about.title2}</span>
-            </h2>
-            <div className="space-y-8 text-lg text-zinc-500 font-normal leading-relaxed mb-12">
-              <p className="border-l-4 border-orange-500 pl-6">{t.about.vision}</p>
-              <p>{t.about.philosophy}</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-              {[
-                { icon: ShieldCheck, title: t.about.dataDriven, desc: 'Strategy rooted in measurable performance.' },
-                { icon: Compass, title: t.about.ethical, desc: 'Leading with integrity and a global vision.' }
-              ].map((item, i) => (
-                <div key={i} className="p-8 rounded-[2rem] bg-zinc-50 border border-zinc-100 shadow-sm group hover:border-orange-500/20 transition-all">
-                  <div className="mb-6 w-12 h-12 rounded-xl bg-white flex items-center justify-center text-orange-600 shadow-sm group-hover:scale-110 transition-transform">
-                    <item.icon size={24} />
-                  </div>
-                  <h4 className="text-lg font-black text-zinc-900 mb-2 uppercase tracking-tight">{item.title}</h4>
-                  <p className="text-sm text-zinc-400 font-medium leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <button onClick={() => sendWhatsApp()} className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-zinc-900 active:scale-95 transition-transform">
-              Connect for Collaboration <div className="w-12 h-12 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white group-hover:border-orange-600 transition-all"><ArrowRight size={18} /></div>
-            </button>
-          </div>
-
-          <div className="order-1 lg:order-2 relative">
-            <div className="absolute -inset-10 bg-orange-500/5 rounded-full blur-[120px] -z-10 animate-pulse" />
-            <div className="relative group overflow-hidden rounded-[3.5rem] shadow-2xl border-4 border-white bg-white">
-              <img
-                src={ABOUT_IMAGE_URL}
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                alt="Tracy Waithera - Portrait"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-60 pointer-events-none" />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Revamp Section */}
       <section id="revamp" className="py-32 px-6 bg-zinc-50 relative overflow-hidden">
