@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, Calendar, Check, Star, Compass, Bot, X } from 'lucide-react';
+import { ArrowRight, Play, Calendar, Check, Star, Compass, Bot, X, Linkedin, Instagram, Facebook } from 'lucide-react';
 import { ChatBot } from './components/ChatBot';
-import { SMM_PACKAGES, AI_ADD_ONS, BRAND_SHOOT } from './constants';
+import { SMM_PACKAGES, AI_ADD_ONS, BRAND_SHOOT, SOCIAL_LINKS } from './constants';
 
 export const TrouveApp: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [activeModal, setActiveModal] = useState<{ type: string; key: string } | null>(null);
@@ -398,15 +398,20 @@ export const TrouveApp: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                          </p>
                      </div>
                      <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-center">
-                         <h5 className="font-black text-[11px] uppercase tracking-[0.4em] text-[#D4AF37] mb-8">Contact</h5>
+                         <h5 className="font-black text-base uppercase tracking-[0.4em] text-[#D4AF37] mb-8">Contact</h5>
                          <a href="mailto:trouvemarketingsolutions@gmail.com" className="text-white font-bold text-lg mb-4 hover:text-[#D4AF37] transition-colors break-words text-left lg:text-right">trouvemarketingsolutions@gmail.com</a>
                          <a href="https://wa.me/254702476038" target="_blank" className="text-white font-black text-2xl lg:text-3xl hover:text-[#D4AF37] transition-colors mb-2">+254 702 476 038</a>
-                         <p className="text-slate-400 text-xs font-black uppercase tracking-widest mt-6">Nairobi, Kenya</p>
+                         <p className="text-slate-400 text-base font-black uppercase tracking-widest mt-6">Nairobi, Kenya</p>
+                         <div className="flex items-center gap-4 mt-8">
+                             <a href={SOCIAL_LINKS.linkedin} target="_blank" className="text-white hover:text-[#D4AF37] transition-colors"><Linkedin size={24} /></a>
+                             <a href={SOCIAL_LINKS.instagram} target="_blank" className="text-white hover:text-[#D4AF37] transition-colors"><Instagram size={24} /></a>
+                             <a href={SOCIAL_LINKS.facebook} target="_blank" className="text-white hover:text-[#D4AF37] transition-colors"><Facebook size={24} /></a>
+                         </div>
                      </div>
                  </div>
                  <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                     <p className="text-[10px] font-black tracking-[0.3em] text-white/50 uppercase">© 2026 TROVE MARKETING SOLUTIONS</p>
-                     <p className="text-[10px] font-black tracking-[0.3em] text-[#D4AF37] uppercase">Creative Intelligence Africa</p>
+                     <p className="text-sm font-black tracking-[0.3em] text-white/50 uppercase">© 2026 TROVE MARKETING SOLUTIONS</p>
+                     <p className="text-sm font-black tracking-[0.3em] text-[#D4AF37] uppercase">Creative Intelligence Africa</p>
                  </div>
              </div>
         </footer>

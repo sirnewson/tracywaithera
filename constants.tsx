@@ -32,7 +32,7 @@ export const STRINGS: Record<'en' | 'sw', ContentStrings & {
       tag: 'BRAND STRATEGY AI MARKETING EXPERT CREATIVE',
       title1: 'Building Brands.',
       title2: 'Revamping Minds.',
-      subtitle: 'Brand Strategy • AI Marketing Expert • Creative. I help professionals and businesses create visible brands using creative strategy, AI, and storytelling while nurturing the mind behind the brand.',
+      subtitle: 'Are you struggling to stand out and generate revenue without burning cash on ads? I solve this. I build automated AI marketing systems and high-converting strategies that turn your expertise into a magnetic brand, bringing predictable growth while you focus on what you do best.',
       ctaAgency: 'Agency Services',
     },
     aiTool: {
@@ -437,7 +437,7 @@ export const PROGRAMS: Program[] = [
       'Automate content creation without losing authenticity',
       'Build predictive lead generation systems'
     ],
-    posterUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+    posterUrl: '/images/ai_marketing_poster.png',
     isAvailable: true
   },
   {
@@ -450,7 +450,7 @@ export const PROGRAMS: Program[] = [
       'Master authoritative storytelling',
       'Scale your audience authentically'
     ],
-    posterUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800',
+    posterUrl: '/images/personal_brand_poster.png',
     isAvailable: true
   },
   {
@@ -463,7 +463,7 @@ export const PROGRAMS: Program[] = [
       'Monetize your expertise effectively',
       'Analyze data to optimize conversions'
     ],
-    posterUrl: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&q=80&w=800',
+    posterUrl: '/images/digital_revenue_poster.png',
     isAvailable: true
   },
   {
@@ -476,7 +476,7 @@ export const PROGRAMS: Program[] = [
       'Understand consumer psychology',
       'Lower Customer Acquisition Costs'
     ],
-    posterUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    posterUrl: '/images/ad_identity_poster.png',
     isAvailable: true
   },
   {
@@ -489,7 +489,7 @@ export const PROGRAMS: Program[] = [
       'Set up custom domains and hosting',
       'Implement SEO best practices'
     ],
-    posterUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    posterUrl: '/images/web_creation_poster.png',
     isAvailable: true
   }
 ];

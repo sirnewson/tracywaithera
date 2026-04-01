@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   Menu, X, Sparkles, ShieldCheck, Compass, Mail, Phone, MapPin, Calendar,
-  Award, Heart, Bot, Mic, Wallet, BookOpen, FileText, Clock, Zap, ArrowRight, MessageSquare, Play
+  Award, Heart, Bot, Mic, Wallet, BookOpen, FileText, Clock, Zap, ArrowRight, MessageSquare, Play,
+  Linkedin, Instagram, Facebook
 } from 'lucide-react';
 import { STRINGS, SERVICES, VIDEOS, RATE_CARD, ARTICLES, SOCIAL_LINKS, CONNECT_ITEMS, PROGRAMS } from './constants';
 import { Language, Article } from './types';
@@ -31,22 +32,15 @@ const App: React.FC = () => {
   const [showRateCard, setShowRateCard] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<ArticleExtended | null>(null);
   const [formData, setFormData] = useState({ name: '', goal: '' });
-  const [aboutImage, setAboutImage] = useState(ABOUT_IMAGE_URL);
 
   const t = STRINGS[lang];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    
-    // Toggle About image every 5 seconds
-    const intervalId = setInterval(() => {
-      setAboutImage(prev => prev === ABOUT_IMAGE_URL ? AI_POSTER_URL : ABOUT_IMAGE_URL);
-    }, 5000);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearInterval(intervalId);
     };
   }, []);
 
@@ -241,10 +235,27 @@ const App: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-              <button onClick={() => scrollTo('agency')} className="w-full sm:w-auto bg-white/80 backdrop-blur hover:bg-zinc-100 text-zinc-900 border border-zinc-200 font-black px-12 py-5 rounded-2xl flex items-center justify-center gap-3 transition-all uppercase tracking-widest text-[10px] shadow-sm">
+              <button onClick={() => scrollTo('agency')} className="w-full sm:w-auto bg-white/80 backdrop-blur hover:bg-zinc-100 text-zinc-900 border border-zinc-200 font-black px-12 py-5 rounded-2xl flex items-center justify-center gap-3 transition-all uppercase tracking-widest text-base shadow-sm">
                 {t.hero.ctaAgency} <ArrowRight size={18} />
               </button>
             </div>
+            
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl mx-auto md:mx-0">
+              {SERVICES.map((service, i) => {
+                const IconMap: any = { Sparkles, Bot, Mic };
+                const Icon = IconMap[service.icon];
+                return (
+                 <div key={i} className="flex flex-col gap-3 p-6 rounded-2xl bg-purple-50 border border-purple-200 shadow-md">
+                   <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-700">
+                     {Icon && <Icon size={20} />}
+                   </div>
+                   <p className="font-black text-sm uppercase tracking-widest text-purple-900">{lang === 'en' ? service.titleEn : service.titleSw}</p>
+                   <p className="text-sm text-purple-800 font-medium leading-relaxed">{lang === 'en' ? service.descEn : service.descSw}</p>
+                 </div>
+                );
+              })}
+            </div>
+
           </div>
 
           <div className="order-1 md:order-2 flex justify-center">
@@ -299,7 +310,7 @@ const App: React.FC = () => {
             <div className="absolute -inset-10 bg-orange-500/5 rounded-full blur-[120px] -z-10 animate-pulse" />
             <div className="relative group overflow-hidden rounded-[3.5rem] shadow-2xl border-4 border-white bg-white">
               <img
-                src={aboutImage}
+                src={ABOUT_IMAGE_URL}
                 className="w-full h-[600px] object-cover transition-all duration-1000"
                 alt="Tracy Waithera - About"
               />
@@ -402,12 +413,12 @@ const App: React.FC = () => {
       <section id="revamp" className="py-32 px-6 bg-zinc-50 relative overflow-hidden">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 text-center lg:text-left">
           <div className="order-2 lg:order-1">
-            <span className="text-[10px] font-black text-purple-600 tracking-[0.6em] uppercase mb-6 block">{t.revamp.subtitle}</span>
+            <span className="text-sm font-black text-purple-600 tracking-[0.6em] uppercase mb-6 block">{t.revamp.subtitle}</span>
             <h2 className="text-4xl md:text-6xl font-black text-zinc-900 mb-10 tracking-tighter uppercase">{t.revamp.title}</h2>
             <p className="text-xl md:text-2xl text-zinc-500 mb-12 font-medium italic leading-relaxed max-w-2xl mx-auto lg:mx-0">
               "{t.revamp.desc}"
             </p>
-            <button onClick={() => setView('book')} className="group px-10 py-5 bg-white border-2 border-purple-600 rounded-2xl text-[10px] font-black uppercase tracking-widest text-purple-900 shadow-xl shadow-purple-500/10 hover:bg-purple-600 hover:text-white transition-all flex items-center justify-center lg:justify-start gap-3 active:scale-95 mx-auto lg:mx-0">
+            <button onClick={() => setView('book')} className="group px-10 py-5 bg-white border-2 border-purple-600 rounded-2xl text-sm font-black uppercase tracking-widest text-purple-900 shadow-xl shadow-purple-500/10 hover:bg-purple-600 hover:text-white transition-all flex items-center justify-center lg:justify-start gap-3 active:scale-95 mx-auto lg:mx-0">
               <BookOpen className="text-purple-600 group-hover:text-white transition-colors" size={18} /> {t.revamp.book}
             </button>
           </div>
@@ -509,23 +520,26 @@ const App: React.FC = () => {
               <img src={LOGO_URL} alt="Logo" className="w-12 h-12 rounded-xl shadow-md" />
               <span className="text-3xl font-black tracking-tighter text-zinc-900">TRACY <span className="gradient-text italic">WAITHERA</span></span>
             </div>
-            <p className="text-zinc-500 mt-2 text-[9px] font-black uppercase tracking-widest max-w-xs">&copy; 2025 TRACY WAITHERA STUDIO • NAIROBI, KENYA</p>
+            <p className="text-zinc-500 mt-2 text-sm font-black uppercase tracking-widest max-w-xs">&copy; 2025 TRACY WAITHERA STUDIO • NAIROBI, KENYA</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-xs font-bold text-zinc-400 uppercase tracking-widest">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-base font-bold text-zinc-400 uppercase tracking-widest">
             <div className="flex flex-col gap-4">
-              <p className="text-zinc-900 text-[10px] font-black">Navigation</p>
+              <p className="text-zinc-900 text-lg font-black">Navigation</p>
               <button onClick={() => scrollTo('hero')} className="hover:text-orange-600 text-left">Home</button>
               <button onClick={() => scrollTo('insights')} className="hover:text-orange-600 text-left">Insights</button>
             </div>
             <div className="flex flex-col gap-4">
-              <p className="text-zinc-900 text-[10px] font-black">Social</p>
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" className="hover:text-orange-600">LinkedIn</a>
-              <a href={SOCIAL_LINKS.instagram} target="_blank" className="hover:text-orange-600">Instagram</a>
+              <p className="text-zinc-900 text-lg font-black">Social</p>
+              <div className="flex gap-4">
+                <a href={SOCIAL_LINKS.linkedin} target="_blank" className="hover:text-orange-600"><Linkedin size={24} /></a>
+                <a href={SOCIAL_LINKS.instagram} target="_blank" className="hover:text-orange-600"><Instagram size={24} /></a>
+                <a href={SOCIAL_LINKS.facebook} target="_blank" className="hover:text-orange-600"><Facebook size={24} /></a>
+              </div>
             </div>
             <button onClick={handleRateCardToggle} className="p-5 rounded-2xl bg-white border border-zinc-200 hover:border-orange-500 transition-all text-left shadow-sm">
-              <p className="text-zinc-900 text-[10px] font-black">Investment</p>
-              <p className="text-[8px] mt-1">Rates & Booking</p>
+              <p className="text-zinc-900 text-lg font-black">Investment</p>
+              <p className="text-sm mt-1">Rates & Booking</p>
             </button>
           </div>
         </div>
