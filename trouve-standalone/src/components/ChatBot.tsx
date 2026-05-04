@@ -14,7 +14,7 @@ interface ChatBotProps {
   initialOpen?: boolean;
 }
 
-export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = true }) => {
+export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = false }) => {
   const isTracy = type === 'tracy';
   const botName = isTracy ? 'Tracy Waithera' : 'The Genius Trouve Marketer';
   const initialGreeting = isTracy 
@@ -174,6 +174,14 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
                 >
                   Insights
                 </button>
+                <a
+                  href="https://wa.me/254702476038"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 bg-green-50 text-green-600 rounded-full hover:bg-green-600 hover:text-white transition-colors flex items-center gap-1"
+                >
+                  WhatsApp
+                </a>
               </>
             ) : (
               <>
@@ -222,7 +230,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ type = 'tracy', initialOpen = 
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className={`w-14 h-14 text-white rounded-full shadow-2xl flex items-center justify-center hover:-translate-y-1 transition-all duration-300 btn-depth relative group ${isTracy ? 'bg-purple-600 hover:shadow-purple-600/30 hover:bg-purple-700' : 'bg-brand-navyDark hover:shadow-brand-gold/20 hover:bg-brand-gold'}`}
+          className={`w-14 h-14 text-white rounded-full shadow-2xl flex items-center justify-center hover:-translate-y-1 transition-all duration-300 btn-depth relative group animate-pulse ${isTracy ? 'bg-purple-600 hover:shadow-purple-600/30 hover:bg-purple-700 ring-4 ring-purple-600/40' : 'bg-brand-navyDark hover:shadow-brand-gold/20 hover:bg-brand-gold ring-4 ring-brand-navyDark/40'}`}
         >
           {isTracy ? (
             <span className="font-display font-black text-2xl">T</span>

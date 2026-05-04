@@ -435,7 +435,7 @@ export const TrouveApp: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       )}
 
       {/* Global SMM ChatBot */}
-      <ChatBot type="trouve" initialOpen={true} />
+      <ChatBot type="trouve" initialOpen={false} />
     </div>
   );
 };
