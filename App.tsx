@@ -169,7 +169,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            {['services', 'agency', 'about', 'insights'].map((id) => (
+            {['services', 'agency', 'about', 'revamp', 'insights'].map((id) => (
               <button key={id} onClick={() => scrollTo(id)} className="text-[10px] font-black text-zinc-900 hover:text-orange-600 transition-all uppercase tracking-widest relative group">
                 {t.nav[id as keyof typeof t.nav]}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-orange-600 group-hover:w-full transition-all duration-300" />
@@ -206,7 +206,7 @@ const App: React.FC = () => {
             <button onClick={() => setIsMenuOpen(false)}><X size={32} /></button>
           </div>
           <div className="flex flex-col gap-8">
-            {['services', 'agency', 'about', 'insights', 'contact'].map((id) => (
+            {['services', 'agency', 'about', 'revamp', 'insights', 'contact'].map((id) => (
               <button key={id} onClick={() => scrollTo(id)} className="text-4xl font-black text-zinc-300 hover:text-zinc-900 text-left uppercase transition-colors tracking-tighter">
                 {t.nav[id as keyof typeof t.nav] || id}
               </button>
@@ -345,7 +345,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-[10px] font-black text-orange-600 tracking-[0.4em] uppercase mb-4 block">Marketing Insights by Me</span>
+              <span className="text-[10px] font-black text-orange-600 tracking-[0.4em] uppercase mb-4 block">Marketing Articles by Me</span>
               <h2 className="text-4xl md:text-5xl font-black text-zinc-900 uppercase tracking-tighter leading-tight">
                 {t.articles.title}
               </h2>

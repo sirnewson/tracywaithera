@@ -25,8 +25,9 @@ export const STRINGS: Record<'en' | 'sw', ContentStrings & {
       contact: 'Connect',
       quote: 'Start Project',
       rates: 'Price List',
-      insights: 'Insights',
+      insights: 'Articles',
       programs: 'Programs',
+      revamp: 'My Book',
     },
     hero: {
       tag: 'BRAND STRATEGY AI MARKETING EXPERT CREATIVE',
@@ -109,8 +110,9 @@ export const STRINGS: Record<'en' | 'sw', ContentStrings & {
       contact: 'Nisalimie',
       quote: 'Anza Mradi',
       rates: 'Orodha ya Bei',
-      insights: 'Mafunzo',
+      insights: 'Makala',
       programs: 'Programu',
+      revamp: 'Kitabu Changu',
     },
     hero: {
       tag: 'MKAKATI WA CHAPA METAALAM WA AI UBUNIFU',
