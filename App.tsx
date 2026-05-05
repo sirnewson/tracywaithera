@@ -11,6 +11,7 @@ import { TrouveApp } from './apps/trouve/TrouveApp';
 import BookApp from './apps/book/BookApp';
 import ProgramsApp from './apps/programs/ProgramsApp';
 import { ChatBot } from './apps/trouve/components/ChatBot';
+import { Preloader } from './components/Preloader';
 
 type AppView = 'main' | 'trouve' | 'book' | 'programs';
 
@@ -88,6 +89,7 @@ const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-white text-zinc-800 selection:bg-orange-500 selection:text-white font-sans">
+      <Preloader />
       {/* Article Modal */}
       {selectedArticle && (
         <div className="fixed inset-0 z-[400] bg-zinc-900/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-300">
